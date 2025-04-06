@@ -73,22 +73,28 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
-      {/* Hero Section */}
-      <section className="hero-section">
+      {/* Hero Section - Updated */}
+      <section className="hero-section" id="hero">
         <div className="container">
           <div className="hero-content">
-            <Link to="/about" className="hero-title-wrapper">
+            <a href="#about" className="hero-title-wrapper" onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('about').scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+            }}>
               <h1 className="hero-title">
-                <span className="hero-title-part">I'm Anushka,</span> <span className="hero-description-part">a curious engineer turned product designer, IITR grad and amateur artist.</span>
+                <span className="hero-title-part">I'm Anushka,</span> <span className="hero-description-part">designer crafting impactful digital experiences that quietly enhance daily life and leave a lasting trace of positive change.</span>
               </h1>
-            </Link>
+            </a>
             
             <div className="hero-actions-wrapper">
               <div className="hero-actions">
                 <div className="hero-cta">
-                  <Link to="/work" className="cta-button">
+                  <a href="#work" className="cta-button" onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('work').scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+                  }}>
                     Explore my work <span className="arrow">→</span>
-                  </Link>
+                  </a>
                 </div>
                 
                 <div className="hero-status">
@@ -101,8 +107,8 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Work Section - Redesigned to match Tejasswin's site with horizontal layout */}
-      <section className="work-section section">
+      {/* Work Section */}
+      <section className="work-section section" id="work">
         <div className="container">
           <h2 className="section-title">Some of my handpicked work ✨</h2>
           
@@ -134,6 +140,43 @@ const HomePage = () => {
             <Link to="/work" className="explore-more-button">
               Explore More Work <span className="arrow">→</span>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* About Me Section - Enhanced design with two CTAs */}
+      <section className="about-me-section section" id="about">
+        <div className="container">
+          <h2 className="section-title">Little About Me</h2>
+          
+          <div className="about-card">
+            <div className="about-content">
+              <div className="about-text-container">
+                <p className="about-text">
+                  I'm Anushka, a product designer with a passion for creating intuitive digital experiences that solve real problems. With a background in UX design and a curious mindset, I approach each project with empathy and attention to detail.
+                </p>
+                
+                <p className="about-text">
+                  Currently working as a UX Manager, I've spent the last 5 years collaborating with cross-functional teams to deliver impactful design solutions across various platforms. My process combines strategic thinking with creative execution to create experiences that are both beautiful and functional.
+                </p>
+                
+                <div className="about-cta-group">
+                  <a href="/Anushka Singh_UX Manager_Resume.pdf" target="_blank" rel="noopener noreferrer" className="cta-button primary">
+                    View my CV <span className="arrow">→</span>
+                  </a>
+                  <Link to="/contact" className="cta-button secondary">
+                    Let's Talk <span className="arrow">→</span>
+                  </Link>
+                </div>
+              </div>
+              
+              <div className="about-image-container">
+                <div className="image-wrapper">
+                  <img src="/images/profile-photo.jpg" alt="Anushka Singh" className="about-image" />
+                  <div className="image-accent"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -252,56 +295,6 @@ const HomePage = () => {
                 <img src="/images/tools/framer.svg" alt="Framer" />
                 Framer
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact CTA Section - With contact options instead of single CTA */}
-      <section className="contact-cta-section">
-        <div className="container">
-          <div className="contact-cta-content">
-            <p className="contact-cta-tagline">I'M JUST A MAIL AWAY</p>
-            <h2 className="contact-cta-title">
-              <span className="title-part">Best design experiences,</span> 
-              <span className="highlight-wrapper">
-                <span className="highlight-text">hum bhi bana lenge!</span>
-                <span className="emoji">😎</span>
-              </span>
-            </h2>
-            <p className="contact-cta-text">Let's make something together.</p>
-            
-            {/* Contact options replacing the single CTA button */}
-            <div className="contact-options">
-              <a href="tel:+1234567890" className="contact-option">
-                <span className="contact-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
-                  </svg>
-                </span>
-                Give me a call
-              </a>
-              
-              <a href="mailto:hello@anushkasingh.com" className="contact-option">
-                <span className="contact-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                    <polyline points="22,6 12,13 2,6" />
-                  </svg>
-                </span>
-                Send me an email
-              </a>
-              
-              <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className="contact-option">
-                <span className="contact-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                    <rect x="2" y="9" width="4" height="12" />
-                    <circle cx="4" cy="4" r="2" />
-                  </svg>
-                </span>
-                Connect on LinkedIn
-              </a>
             </div>
           </div>
         </div>

@@ -143,6 +143,65 @@
       }
     }
   }
+  
+  .resume-cta {
+    display: none;
+    padding: $spacing-sm $spacing-lg;
+    background-color: $primary-color;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: $font-size-sm;
+    transition: all $transition-fast;
+    margin-left: $spacing-md;
+    
+    &:hover {
+      background-color: darken($primary-color, 10%);
+      transform: translateY(-2px);
+    }
+    
+    @media (min-width: $breakpoint-md) {
+      display: block;
+    }
+  }
+  
+  @media (max-width: $breakpoint-md) {
+    .nav {
+      &.open {
+        .nav-list {
+          li:last-child {
+            margin-bottom: $spacing-xl;
+          }
+        }
+        
+        &::after {
+          content: '';
+          display: block;
+          width: 50px;
+          height: 2px;
+          background-color: rgba($text-color, 0.1);
+          margin: $spacing-md auto;
+        }
+        
+        .resume-link-mobile {
+          display: block;
+          text-align: center;
+          margin-top: $spacing-md;
+          
+          a {
+            display: inline-block;
+            padding: $spacing-sm $spacing-xl;
+            background-color: $primary-color;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
 }
 
 // Body spacing adjustment

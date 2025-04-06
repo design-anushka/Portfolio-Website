@@ -1,7 +1,7 @@
-// Hero Section - Updated to match the attached image layout
+// Hero Section - Updated with reduced height and realigned elements
 .hero-section {
-  padding: calc(#{$header-height} + #{$spacing-xl}) 0 $spacing-xl;
-  min-height: 75vh;
+  padding: calc(#{$header-height} + #{$spacing-lg}) 0 $spacing-lg; // Reduced padding
+  min-height: 65vh; // Reduced height to show more of next section
   display: flex;
   align-items: center;
   background-color: #f5f5fa; // Light lavender background
@@ -14,7 +14,7 @@
     .hero-title-wrapper {
       text-decoration: none;
       display: block;
-      margin-bottom: $spacing-3xl;
+      margin-bottom: $spacing-xl; // Reduced margin
       
       &:hover {
         .hero-title {
@@ -28,13 +28,13 @@
     }
     
     .hero-title {
-      font-size: $font-size-4xl;
+      font-size: $font-size-3xl; // Slightly reduced
       line-height: 1.1;
       font-weight: 700;
       max-width: 1200px;
       
       @media (min-width: $breakpoint-lg) {
-        font-size: $font-size-5xl;
+        font-size: $font-size-4xl;
       }
       
       .hero-title-part {
@@ -52,21 +52,13 @@
     
     .hero-actions-wrapper {
       width: 100%;
-      display: flex;
-      justify-content: center;
-      margin-top: $spacing-2xl;
+      margin-top: $spacing-xl; // Reduced margin
     }
     
     .hero-actions {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between; // Changed to space-between
       align-items: center;
-      gap: $spacing-md;
-      
-      @media (min-width: $breakpoint-md) {
-        flex-direction: row;
-        gap: $spacing-2xl;
-      }
       
       .hero-cta {
         .cta-button {
@@ -96,7 +88,7 @@
       }
       
       .hero-status {
-        text-align: center;
+        text-align: right; // Right aligned
         
         .status-text {
           font-size: $font-size-md;
@@ -130,7 +122,8 @@
 
 // Work Section - Redesigned to match Tejasswin's site with horizontal layout
 .work-section {
-  padding: $spacing-4xl 0;
+  padding-top: $spacing-3xl;
+  padding-bottom: $spacing-3xl;
   background-color: white;
   
   .section-title {
@@ -185,8 +178,16 @@
       .view-case-study {
         color: white;
         
+        &::before {
+          background: linear-gradient(90deg, 
+            rgba(255, 255, 255, 0.1), 
+            rgba(255, 255, 255, 0.3),
+            rgba(255, 255, 255, 0.1)
+          );
+        }
+        
         .arrow {
-          transform: translateX(4px);
+          transform: translateX(6px);
         }
       }
     }
@@ -255,10 +256,42 @@
       color: $primary-color;
       text-decoration: none;
       transition: all $transition-normal;
+      position: relative;
+      overflow: hidden;
+      padding: $spacing-xs $spacing-sm;
+      border-radius: 4px;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, 
+          rgba($primary-color, 0.1), 
+          rgba($accent-color, 0.2),
+          rgba($primary-color, 0.1)
+        );
+        transition: all 0.6s ease;
+        z-index: -1;
+      }
       
       .arrow {
         margin-left: $spacing-xs;
         transition: transform $transition-normal;
+      }
+      
+      &:hover {
+        color: darken($primary-color, 10%);
+        
+        &::before {
+          left: 100%;
+        }
+        
+        .arrow {
+          transform: translateX(6px);
+        }
       }
     }
   }
@@ -504,7 +537,8 @@
 
 // Process Section - Redesigned with white background and reduced spacing
 .process-section {
-  padding: $spacing-3xl 0; // Reduced padding
+  padding-top: $spacing-3xl;
+  padding-bottom: $spacing-3xl;
   background-color: white; // Changed to white background
   color: $text-color; // Updated text color for white background
   
@@ -850,9 +884,9 @@
 
 // Enhanced Testimonials Section with the requested features
 .testimonials-section {
-  padding: $spacing-4xl 0;
-  background-color: $light-gray;
-  overflow: hidden;
+  padding-top: $spacing-3xl;
+  padding-bottom: $spacing-3xl;
+  background-color: white; // Remove gray background
   
   .section-title {
     font-size: $font-size-4xl;
@@ -1051,4 +1085,232 @@
   .testimonial-card:nth-child(even) {
     border-top: 4px solid $accent-color;
   }
+}
+
+// About Me Section - Enhanced design
+.about-me-section {
+  padding-top: $spacing-3xl;
+  padding-bottom: $spacing-3xl;
+  background-color: $light-gray;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 50%;
+    height: 80%;
+    background: radial-gradient(circle, rgba($accent-color, 0.05) 0%, rgba($accent-color, 0) 70%);
+    border-radius: 50%;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 40%;
+    height: 60%;
+    background: radial-gradient(circle, rgba($primary-color, 0.05) 0%, rgba($primary-color, 0) 70%);
+    border-radius: 50%;
+  }
+  
+  .section-title {
+    font-size: $font-size-3xl;
+    font-weight: 700;
+    margin-bottom: $spacing-4xl;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    @media (min-width: $breakpoint-md) {
+      font-size: $font-size-4xl;
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      width: 40%;
+      height: 3px;
+      background-color: $accent-color;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  
+  .about-card {
+    background-color: white;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    
+    @media (min-width: $breakpoint-md) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  .about-text-container {
+    padding: $spacing-3xl;
+    
+    @media (min-width: $breakpoint-lg) {
+      padding: $spacing-4xl;
+    }
+    
+    .about-text {
+      font-size: $font-size-lg;
+      line-height: 1.7;
+      color: $text-color;
+      margin-bottom: $spacing-xl;
+      
+      &:last-of-type {
+        margin-bottom: $spacing-2xl;
+      }
+    }
+    
+    .about-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: $spacing-md;
+      
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        padding: $spacing-md $spacing-xl;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all $transition-normal;
+        
+        .arrow {
+          margin-left: $spacing-sm;
+          transition: transform $transition-normal;
+        }
+        
+        &:hover .arrow {
+          transform: translateX(4px);
+        }
+        
+        &.primary {
+          background-color: $primary-color;
+          color: white;
+          
+          &:hover {
+            background-color: darken($primary-color, 10%);
+          }
+        }
+        
+        &.secondary {
+          background-color: rgba($accent-color, 0.1);
+          color: $accent-color;
+          
+          &:hover {
+            background-color: rgba($accent-color, 0.15);
+          }
+        }
+      }
+    }
+  }
+  
+  .about-image-container {
+    height: 100%;
+    
+    .image-wrapper {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+      
+      .about-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+      
+      .image-accent {
+        position: absolute;
+        bottom: -20px;
+        right: -20px;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background-color: rgba($accent-color, 0.2);
+        z-index: 2;
+      }
+      
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, rgba($primary-color, 0.1), transparent 50%);
+        pointer-events: none;
+        z-index: 1;
+      }
+    }
+  }
+  
+  // Reverse order on mobile for better experience
+  @media (max-width: $breakpoint-md) {
+    .about-content {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    
+    .about-image-container {
+      .image-wrapper {
+        height: 350px;
+      }
+    }
+  }
+}
+
+// Reduce spacing between sections
+.section {
+  padding: $spacing-3xl 0; // Reduced from 4xl to 3xl
+}
+
+// Specific section spacing adjustments
+.work-section {
+  padding-top: $spacing-3xl;
+  padding-bottom: $spacing-3xl;
+}
+
+.about-me-section {
+  padding-top: $spacing-3xl;
+  padding-bottom: $spacing-3xl;
+}
+
+.testimonials-section {
+  padding-top: $spacing-3xl;
+  padding-bottom: $spacing-3xl;
+  background-color: white; // Remove gray background
+}
+
+.process-section {
+  padding-top: $spacing-3xl;
+  padding-bottom: $spacing-3xl;
 } 

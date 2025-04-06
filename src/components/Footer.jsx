@@ -1,12 +1,11 @@
-import { Link } from 'react-router-dom'
-import '../styles/components/Footer.scss'
+import React from 'react';
+import '../styles/components/Footer.scss';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear()
-
   return (
     <footer className="footer">
-      <div className="contact-cta-section">
+      {/* Contact CTA Section */}
+      <div className="contact-cta-section" id="contact">
         <div className="container">
           <div className="contact-cta-content">
             <p className="contact-cta-tagline">I'M JUST A MAIL AWAY</p>
@@ -19,7 +18,7 @@ const Footer = () => {
             </h2>
             <p className="contact-cta-text">Let's make something together.</p>
             
-            {/* Contact options replacing the single CTA button */}
+            {/* Contact options */}
             <div className="contact-options">
               <a href="tel:+1234567890" className="contact-option">
                 <span className="contact-icon">
@@ -54,24 +53,29 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
-      <div className="container">
-        <div className="footer-content">
-          <div className="footer-main">
-            {/* <h2 className="footer-heading">Bridging the gap <br/> between pixels and people.</h2> */}
-
+      
+      {/* Footer Bottom */}
+      <div className="footer-bottom">
+        <div className="container">
+          <div className="footer-content">
+            <div className="footer-copyright">
+              <p>Anushka Singh</p>
+            </div>
+            <div className="footer-links">
+              <a 
+                href="/Anushka Singh_UX Manager_Resume.pdf" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="download-resume"
+              >
+                Download Resume
+              </a>
+            </div>
           </div>
-        </div>
-        
-        <div className="footer-bottom">
-          <p>© {currentYear} Anushka Singh. All rights reserved.</p>
-          <a href="/Anushka Singh_UX Manager_Resume.pdf" target="_blank" rel="noopener noreferrer" className="resume-button">
-              Download my Resume
-            </a>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer 
+export default Footer; 

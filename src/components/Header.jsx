@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import '../styles/components/Header.scss'
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,11 +17,6 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [scrolled])
-
-  useEffect(() => {
-    // Close menu when location changes
-    setMenuOpen(false)
-  }, [location])
 
   useEffect(() => {
     // Toggle body class when menu is open
@@ -41,20 +35,28 @@ const Header = () => {
     setMenuOpen(!menuOpen)
   }
 
-  const handleNavClick = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
+  // Smooth scroll function
+  const scrollToSection = (sectionId) => {
+    setMenuOpen(false) // Close mobile menu if open
+    const section = document.getElementById(sectionId)
+    if (section) {
+      window.scrollTo({
+        top: section.offsetTop - 100, // Offset for header height
+        behavior: 'smooth'
+      })
+    }
+  }
 
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
       <div className="container">
         <div className="header-content">
-          <Link to="/" className="logo">
+          <a href="#hero" className="logo" onClick={(e) => {
+            e.preventDefault()
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          }}>
             <span className="logo-letter">A</span>
-          </Link>
+          </a>
           
           <button 
             className={`mobile-menu-toggle ${menuOpen ? 'active' : ''}`} 
@@ -69,28 +71,35 @@ const Header = () => {
           
           <nav className={`nav ${menuOpen ? 'open' : ''}`}>
             <ul className="nav-list">
-              <li className={location.pathname === '/work' ? 'active' : ''}>
-                <Link to="/work" onClick={handleNavClick}>Work</Link>
-              </li>
-              <li className={location.pathname === '/about' ? 'active' : ''}>
-                <Link to="/about" onClick={handleNavClick}>About</Link>
+              <li>
+                <a href="#work" onClick={(e) => {
+                  e.preventDefault()
+                  scrollToSection('work')
+                }}>Work</a>
               </li>
               <li>
-                <a 
-                  href="/Anushka Singh_UX Manager_Resume.pdf" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  Resume
-                </a>
+                <a href="#about" onClick={(e) => {
+                  e.preventDefault()
+                  scrollToSection('about')
+                }}>About</a>
               </li>
-              <li className={location.pathname === '/contact' ? 'active' : ''}>
-                <Link to="/contact" onClick={handleNavClick}>Contact</Link>
+              <li>
+                <a href="#contact" onClick={(e) => {
+                  e.preventDefault()
+                  scrollToSection('contact')
+                }}>Contact</a>
               </li>
             </ul>
           </nav>
           
-          <div className={`nav-bg ${menuOpen ? 'active' : ''}`}></div>
+          <a 
+            href="/Anushka Singh_UX Manager_Resume.pdf" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="resume-cta"
+          >
+            Resume
+          </a>
         </div>
       </div>
     </header>
