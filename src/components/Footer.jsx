@@ -39,7 +39,7 @@ const Footer = () => {
                 Send me an email
               </a>
               
-              <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className="contact-option">
+              <a href="https://www.linkedin.com/in/singhanushka21/" target="_blank" rel="noopener noreferrer" className="contact-option">
                 <span className="contact-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
@@ -50,26 +50,26 @@ const Footer = () => {
                 Connect on LinkedIn
               </a>
             </div>
-          </div>
-        </div>
-      </div>
-      
-      {/* Footer Bottom */}
-      <div className="footer-bottom">
-        <div className="container">
-          <div className="footer-content">
-            <div className="footer-copyright">
-              <p>Anushka Singh</p>
-            </div>
-            <div className="footer-links">
-              <a 
-                href="/Anushka Singh_UX Manager_Resume.pdf" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="download-resume"
-              >
-                Download Resume
-              </a>
+            
+            {/* Container-width divider with reduced top margin */}
+            <div className="footer-divider"></div>
+            
+            {/* Bottom section */}
+            <div className="footer-bottom">
+              <div className="footer-content">
+                <div className="footer-copyright">
+                  <p>© 2023 Anushka Singh. All rights reserved.</p>
+                </div>
+                <div className="footer-links">
+                  <a 
+                    href="/Anushka Singh_UX Manager_Resume.pdf" 
+                    download="Anushka Singh_UX Manager_Resume.pdf"
+                    className="download-resume"
+                  >
+                    Download Resume <span className="arrow">→</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>

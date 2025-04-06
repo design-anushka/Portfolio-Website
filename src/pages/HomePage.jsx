@@ -110,7 +110,7 @@ const HomePage = () => {
       {/* Work Section */}
       <section className="work-section section" id="work">
         <div className="container">
-          <h2 className="section-title">Some of my handpicked work ✨</h2>
+          <h2 className="section-title">Some of my handpicked work</h2>
           
           <div className="projects-container">
             {featuredProjects.map((project) => (

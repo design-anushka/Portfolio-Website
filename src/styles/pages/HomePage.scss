@@ -1,10 +1,10 @@
-// Hero Section - Updated with reduced height and realigned elements
+// Hero Section - Restored to original size
 .hero-section {
-  padding: calc(#{$header-height} + #{$spacing-lg}) 0 $spacing-lg; // Reduced padding
-  min-height: 65vh; // Reduced height to show more of next section
+  padding: calc(#{$header-height} + #{$spacing-xl}) 0 $spacing-xl; // Restored original padding
+  min-height: 75vh; // Restored original height
   display: flex;
   align-items: center;
-  background-color: #f5f5fa; // Light lavender background
+  background-color: #f5f5fa;
   
   .hero-content {
     display: flex;
@@ -14,7 +14,7 @@
     .hero-title-wrapper {
       text-decoration: none;
       display: block;
-      margin-bottom: $spacing-xl; // Reduced margin
+      margin-bottom: $spacing-3xl; // Restored original margin
       
       &:hover {
         .hero-title {
@@ -28,36 +28,36 @@
     }
     
     .hero-title {
-      font-size: $font-size-3xl; // Slightly reduced
+      font-size: $font-size-4xl; // Restored original font size
       line-height: 1.1;
       font-weight: 700;
       max-width: 1200px;
       
       @media (min-width: $breakpoint-lg) {
-        font-size: $font-size-4xl;
+        font-size: $font-size-5xl;
       }
       
       .hero-title-part {
-        color: #7c5cfc; // Purple color
+        color: #7c5cfc;
         display: inline-block;
         transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         transform-origin: left center;
       }
       
       .hero-description-part {
-        color: #5d6b98; // Slate blue gray
+        color: #5d6b98;
         display: inline;
       }
     }
     
     .hero-actions-wrapper {
       width: 100%;
-      margin-top: $spacing-xl; // Reduced margin
+      margin-top: $spacing-2xl; // Restored original margin
     }
     
     .hero-actions {
       display: flex;
-      justify-content: space-between; // Changed to space-between
+      justify-content: space-between; // Keep this change as requested
       align-items: center;
       
       .hero-cta {
@@ -88,7 +88,7 @@
       }
       
       .hero-status {
-        text-align: right; // Right aligned
+        text-align: right; // Keep this change as requested
         
         .status-text {
           font-size: $font-size-md;
@@ -120,6 +120,35 @@
   }
 }
 
+// Common section heading styling with hand-drawn pen stroke
+.section-title {
+  font-size: $font-size-4xl;
+  font-weight: 700;
+  margin-bottom: $spacing-4xl;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  @media (min-width: $breakpoint-lg) {
+    font-size: $font-size-5xl;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    right: 0;
+    width: 40%;
+    height: 3px;
+    background: linear-gradient(to right, transparent, $accent-color);
+    border-radius: 3px;
+    transform: translateY(-50%);
+    opacity: 0.9;
+  }
+}
+
 // Work Section - Redesigned to match Tejasswin's site with horizontal layout
 .work-section {
   padding-top: $spacing-3xl;
@@ -127,14 +156,7 @@
   background-color: white;
   
   .section-title {
-    font-size: $font-size-4xl;
-    font-weight: 700;
-    margin-bottom: $spacing-4xl;
-    text-align: center;
-    
-    @media (min-width: $breakpoint-lg) {
-      font-size: $font-size-5xl;
-    }
+    // All common styles are inherited
   }
   
   .projects-container {
@@ -369,16 +391,7 @@
   }
   
   .section-title {
-    font-size: $font-size-4xl;
-    font-weight: 800;
-    margin-bottom: $spacing-md;
-    text-align: center;
-    text-transform: uppercase;
-    font-family: sans-serif;
-    
-    @media (min-width: $breakpoint-lg) {
-      font-size: $font-size-5xl;
-    }
+    // All common styles are inherited
   }
   
   .subtitle {
@@ -543,14 +556,7 @@
   color: $text-color; // Updated text color for white background
   
   .section-title {
-    font-size: $font-size-4xl;
-    font-weight: 700;
-    margin-bottom: $spacing-2xl; // Reduced margin
-    text-align: center;
-    
-    @media (min-width: $breakpoint-lg) {
-      font-size: $font-size-5xl;
-    }
+    // All common styles are inherited
   }
   
   .process-principles {
@@ -889,14 +895,7 @@
   background-color: white; // Remove gray background
   
   .section-title {
-    font-size: $font-size-4xl;
-    font-weight: 700;
-    margin-bottom: $spacing-4xl;
-    text-align: center;
-    
-    @media (min-width: $breakpoint-lg) {
-      font-size: $font-size-5xl;
-    }
+    // All common styles are inherited
   }
   
   .testimonials-container {
@@ -1118,30 +1117,7 @@
   }
   
   .section-title {
-    font-size: $font-size-3xl;
-    font-weight: 700;
-    margin-bottom: $spacing-4xl;
-    text-align: center;
-    position: relative;
-    display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
-    
-    @media (min-width: $breakpoint-md) {
-      font-size: $font-size-4xl;
-    }
-    
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -15px;
-      left: 0;
-      width: 40%;
-      height: 3px;
-      background-color: $accent-color;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+    // All common styles are inherited
   }
   
   .about-card {

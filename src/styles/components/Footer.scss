@@ -115,19 +115,14 @@
   }
   
   .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    // margin-top: $spacing-xl;
-    padding-top: $spacing-lg;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: $font-size-sm;
-    opacity: 0.7;
+    width: 100%;
+    background-color: transparent;
+    padding: 0 0 $spacing-xl;
   }
 
   // Contact CTA Section
   .contact-cta-section {
-    padding: $spacing-5xl 0;
+    padding: $spacing-5xl 0 $spacing-2xl;
     background-color: $primary-color;
     color: white;
     text-align: center;
@@ -269,6 +264,7 @@
       justify-content: center;
       gap: $spacing-md;
       margin-top: $spacing-2xl;
+      margin-bottom: $spacing-3xl;
       
       @media (min-width: $breakpoint-md) {
         gap: $spacing-xl;
@@ -322,59 +318,62 @@
     }
   }
   
-  // Footer Bottom
-  .footer-bottom {
-    background-color: $light-gray;
-    padding: $spacing-lg 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+  // Divider with specific width 
+  .footer-divider {
+    width: 90%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 0 auto $spacing-2xl;
   }
   
   .footer-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: $spacing-md;
+    flex-direction: row;
+    gap: $spacing-xl;
+    padding: 0 $spacing-md;
     
     @media (max-width: $breakpoint-sm) {
       flex-direction: column;
       text-align: center;
+      gap: $spacing-md;
     }
   }
   
   .footer-copyright {
     p {
       margin: 0;
-      color: $dark-gray;
-      font-size: $font-size-md;
-      font-weight: 500;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: $font-size-sm;
+      font-weight: 400;
     }
   }
   
   .footer-links {
-    display: flex;
-    gap: $spacing-lg;
-    
     .download-resume {
-      color: $primary-color;
+      color: white;
       text-decoration: none;
       font-weight: 600;
       font-size: $font-size-md;
       display: inline-flex;
       align-items: center;
       transition: all $transition-fast;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: $spacing-sm $spacing-lg;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
       
-      &::before {
-        content: '↓';
-        margin-right: $spacing-xs;
+      .arrow {
+        margin-left: $spacing-xs;
         transition: transform $transition-fast;
       }
       
       &:hover {
-        color: $accent-color;
+        background-color: rgba(255, 255, 255, 0.2);
         
-        &::before {
-          transform: translateY(2px);
+        .arrow {
+          transform: translateX(4px);
         }
       }
     }
