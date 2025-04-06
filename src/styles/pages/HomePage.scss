@@ -1,6 +1,7 @@
 // Hero Section - Restored to original size
 .hero-section {
-  padding: calc(#{$header-height} + #{$spacing-xl}) 0 $spacing-xl; // Restored original padding
+  padding: calc(#{$header-height} + #{$spacing-xl}) 0 $spacing-xl; // Keep padding for header height
+  margin-top: 0; // Remove margin-top since header now overlaps
   min-height: 75vh; // Restored original height
   display: flex;
   align-items: center;
@@ -88,18 +89,18 @@
       }
       
       .hero-status {
-        text-align: right; // Keep this change as requested
+        text-align: right;
         
         .status-text {
           font-size: $font-size-md;
-          color: #5d6b98; // Slate blue gray
+          color: #5d6b98;
           margin-bottom: $spacing-xs;
-          font-weight: 500;
+          font-weight: 600; // Changed from 500 to 600 (semi-bold)
         }
         
         .previous-text {
           font-size: $font-size-md;
-          color: #5d6b98; // Slate blue gray
+          color: #5d6b98;
           font-weight: 500;
         }
       }
@@ -198,7 +199,7 @@
       }
       
       .view-case-study {
-        color: white;
+        color: white !important; // Ensure text is white on hover
         
         &::before {
           background: linear-gradient(90deg, 
@@ -206,6 +207,7 @@
             rgba(255, 255, 255, 0.3),
             rgba(255, 255, 255, 0.1)
           );
+          left: 70%; // Match the 70% position
         }
         
         .arrow {
@@ -308,7 +310,7 @@
         color: darken($primary-color, 10%);
         
         &::before {
-          left: 100%;
+          left: 70%; // Changed from 100% to 70% to finish earlier
         }
         
         .arrow {

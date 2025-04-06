@@ -1,19 +1,19 @@
-// Glassmorphic navbar with left-right layout
+// Updated header with nav items near Resume CTA
 .header {
   position: fixed;
-  top: 20px;
+  top: 20px; // Changed back to 20px
   left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
+  transform: translateX(-50%); // Restored transform
+  width: 80%; // Changed back to 80%
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 10px; // Restored border radius
   font-family: $font-family-sans;
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3); // Restored border
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   transition: 0.3s;
   padding: 15px 30px;
@@ -58,11 +58,17 @@
     }
   }
   
+  // Right side container for nav and resume
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: $spacing-lg;
+  }
+  
   .nav {
     .nav-list {
       display: flex;
       list-style: none;
-      justify-content: flex-end;
       gap: 30px;
       margin: 0;
       padding: 0;

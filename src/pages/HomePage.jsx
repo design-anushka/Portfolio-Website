@@ -166,7 +166,7 @@ const HomePage = () => {
                 
                 <div className="about-cta-group">
                   <a href="/Anushka Singh_UX Manager_Resume.pdf" target="_blank" rel="noopener noreferrer" className="cta-button primary">
-                    View my CV <span className="arrow">→</span>
+                    View my Resume <span className="arrow">→</span>
                   </a>
                   <a 
                     href="#contact" 
@@ -195,7 +195,7 @@ const HomePage = () => {
       {/* Testimonials Section */}
       <section className="testimonials-section section">
         <div className="container">
-          <h2 className="section-title">Words From My Collaborators</h2>
+          <h2 className="section-title">Few Kind Words From My Collaborators</h2>
           
           <div className="testimonials-container">
             <div className="testimonials-track">

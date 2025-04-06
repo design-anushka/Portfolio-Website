@@ -43,7 +43,7 @@ const Header = () => {
     const section = document.getElementById(sectionId)
     if (section) {
       window.scrollTo({
-        top: section.offsetTop - 100, // Offset for header height
+        top: section.offsetTop - 80, // Offset for header height
         behavior: 'smooth'
       })
     }
@@ -83,37 +83,40 @@ const Header = () => {
             </svg>
           </button>
           
-          <nav className={`nav ${menuOpen ? 'open' : ''}`}>
-            <ul className="nav-list">
-              <li>
-                <a href="#work" onClick={(e) => {
-                  e.preventDefault()
-                  scrollToSection('work')
-                }}>Work</a>
-              </li>
-              <li>
-                <a href="#about" onClick={(e) => {
-                  e.preventDefault()
-                  scrollToSection('about')
-                }}>About</a>
-              </li>
-              <li>
-                <a href="#contact" onClick={(e) => {
-                  e.preventDefault()
-                  scrollToSection('contact')
-                }}>Contact</a>
-              </li>
-            </ul>
-          </nav>
-          
-          <a 
-            href="/Anushka Singh_UX Manager_Resume.pdf" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="resume-cta"
-          >
-            Resume
-          </a>
+          {/* Wrap nav and resume in a container */}
+          <div className="header-right">
+            <nav className={`nav ${menuOpen ? 'open' : ''}`}>
+              <ul className="nav-list">
+                <li>
+                  <a href="#work" onClick={(e) => {
+                    e.preventDefault()
+                    scrollToSection('work')
+                  }}>Work</a>
+                </li>
+                <li>
+                  <a href="#about" onClick={(e) => {
+                    e.preventDefault()
+                    scrollToSection('about')
+                  }}>About</a>
+                </li>
+                <li>
+                  <a href="#contact" onClick={(e) => {
+                    e.preventDefault()
+                    scrollToSection('contact')
+                  }}>Contact</a>
+                </li>
+              </ul>
+            </nav>
+            
+            <a 
+              href="/Anushka Singh_UX Manager_Resume.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="resume-cta"
+            >
+              Resume
+            </a>
+          </div>
         </div>
       </div>
     </header>
