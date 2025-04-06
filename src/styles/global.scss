@@ -4,10 +4,10 @@
 
 // Custom cursor styles
 .magic-cursor {
-  cursor: url('/images/cursors/magic-wand.png'), pointer !important;
+  cursor: url('/images/cursors/cursor.png') 10 5, auto !important;
 }
 
-// Apply to all major interactive elements
+// Apply to all interactive elements
 a, 
 button, 
 .cta-button, 
@@ -16,6 +16,7 @@ button,
 .testimonial-card,
 .project-card,
 .process-card,
-.hero-title-wrapper {
+.hero-title-wrapper,
+.contact-option {
   @extend .magic-cursor;
 } 

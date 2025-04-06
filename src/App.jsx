@@ -8,6 +8,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import CursorFollower from './components/CursorFollower'
 import ScrollToTop from './components/ScrollToTop'
+import ScrollToTopButton from './components/ScrollToTopButton'
 
 // Add this line to test if inline styles work
 import './styles/main.scss'
@@ -15,6 +16,7 @@ import './styles/main.scss'
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="app" style={{ fontFamily: 'Arial, sans-serif' }}>
         <CursorFollower />
         <Header />
@@ -28,7 +30,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
-        <ScrollToTop />
+        <ScrollToTopButton />
       </div>
     </Router>
   )

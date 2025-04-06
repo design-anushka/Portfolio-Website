@@ -3,18 +3,21 @@ import { Link, useLocation } from 'react-router-dom'
 import '../styles/components/Header.scss'
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      const isScrolled = window.scrollY > 10
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled)
+      }
     }
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [scrolled])
 
   useEffect(() => {
     // Close menu when location changes
@@ -38,8 +41,15 @@ const Header = () => {
     setMenuOpen(!menuOpen)
   }
 
+  const handleNavClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
-    <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
+    <header className={`header ${scrolled ? 'scrolled' : ''}`}>
       <div className="container">
         <div className="header-content">
           <Link to="/" className="logo">
@@ -52,18 +62,18 @@ const Header = () => {
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
           >
-            <span></span>
-            <span></span>
-            <span></span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M3 12h18M3 6h18M3 18h18" />
+            </svg>
           </button>
           
           <nav className={`nav ${menuOpen ? 'open' : ''}`}>
             <ul className="nav-list">
               <li className={location.pathname === '/work' ? 'active' : ''}>
-                <Link to="/work">Work</Link>
+                <Link to="/work" onClick={handleNavClick}>Work</Link>
               </li>
               <li className={location.pathname === '/about' ? 'active' : ''}>
-                <Link to="/about">About</Link>
+                <Link to="/about" onClick={handleNavClick}>About</Link>
               </li>
               <li>
                 <a 
@@ -75,10 +85,12 @@ const Header = () => {
                 </a>
               </li>
               <li className={location.pathname === '/contact' ? 'active' : ''}>
-                <Link to="/contact">Contact</Link>
+                <Link to="/contact" onClick={handleNavClick}>Contact</Link>
               </li>
             </ul>
           </nav>
+          
+          <div className={`nav-bg ${menuOpen ? 'active' : ''}`}></div>
         </div>
       </div>
     </header>

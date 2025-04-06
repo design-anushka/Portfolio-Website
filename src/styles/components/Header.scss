@@ -1,204 +1,174 @@
+// Glassmorphic navbar with left-right layout
 .header {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: $header-height;
-  background-color: white;
-  z-index: $z-index-sticky;
-  transition: all $transition-normal;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-
-  &.scrolled {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  }
-
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  font-family: $font-family-sans;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+  padding: 15px 30px;
+  z-index: $z-index-fixed;
+  
   .container {
-    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-
+  
   .header-content {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100%;
   }
-
+  
   .logo {
-    font-size: $font-size-2xl;
-    font-weight: 700;
-    z-index: 300;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    margin-right: $spacing-md;
     
     .logo-letter {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 48px;
-      height: 48px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
       background-color: $primary-color;
       color: white;
-      border-radius: 5px;
-      transition: transform $transition-fast;
+      font-weight: 700;
+      font-size: $font-size-lg;
+      transition: transform 0.3s ease;
+    }
+    
+    &:hover .logo-letter {
+      transform: scale(1.05);
+    }
+  }
+  
+  .nav {
+    .nav-list {
+      display: flex;
+      list-style: none;
+      justify-content: flex-end;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
       
-      &:hover {
-        transform: scale(1.05);
+      li {
+        a {
+          color: $text-color;
+          text-decoration: none;
+          font-weight: 500;
+          transition: color 0.3s;
+          padding: 5px 10px;
+          cursor: pointer;
+          
+          &:hover {
+            color: $accent-color;
+          }
+        }
+        
+        &.active a {
+          color: $accent-color;
+          font-weight: 600;
+        }
       }
     }
   }
   
   .mobile-menu-toggle {
-    display: none;
-    position: relative;
-    width: 30px;
-    height: 24px;
-    z-index: 300;
     background: transparent;
     border: none;
-    outline: none;
     cursor: pointer;
-    padding: 0;
-    margin: 0;
+    display: none;
+    color: $text-color;
     
-    @media (max-width: $breakpoint-md) {
-      display: block;
+    svg {
+      width: 24px;
+      height: 24px;
     }
     
-    span {
+    @media (max-width: 768px) {
       display: block;
-      position: absolute;
-      height: 2px;
-      width: 100%;
-      background: $primary-color;
-      border-radius: 1px;
-      opacity: 1;
-      left: 0;
-      transform: rotate(0deg);
-      transition: .25s ease-in-out;
-      
-      &:nth-child(1) {
-        top: 0;
-      }
-      
-      &:nth-child(2) {
-        top: 10px;
-      }
-      
-      &:nth-child(3) {
-        top: 20px;
-      }
-    }
-    
-    &.active {
-      span {
-        &:nth-child(1) {
-          top: 10px;
-          transform: rotate(135deg);
-        }
-        
-        &:nth-child(2) {
-          opacity: 0;
-          left: -30px;
-        }
-        
-        &:nth-child(3) {
-          top: 10px;
-          transform: rotate(-135deg);
-        }
-      }
     }
   }
-
-  .nav {
-    .nav-list {
-      display: flex;
-      gap: $spacing-xl;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-
-      li {
-        position: relative;
-        font-size: $font-size-md;
-        font-weight: 500;
-        
-        a {
-          color: $primary-color;
-          text-decoration: none;
-          transition: color $transition-fast;
-          padding: $spacing-xs 0;
-          display: inline-block;
-          
-          &::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: $accent-color;
-            transition: width $transition-fast;
-          }
-        }
-
-        &:hover, &.active {
-          a {
-            color: $accent-color;
-            
-            &::after {
-              width: 100%;
-            }
-          }
-        }
-      }
-    }
+  
+  &.scrolled {
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (max-width: 768px) {
+    width: 90%;
+    top: 10px;
+    padding: 10px 15px;
     
-    @media (max-width: $breakpoint-md) {
-      position: fixed;
-      top: 0;
+    .nav {
+      position: absolute;
+      top: 100%;
       left: 0;
       width: 100%;
-      height: 100vh;
-      background-color: white;
-      padding: 100px 20px 20px;
-      transform: translateY(-100%);
-      transition: transform 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border-radius: 0 0 10px 10px;
+      padding: 20px 0;
+      display: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
       
       &.open {
-        transform: translateY(0);
+        display: block;
       }
       
       .nav-list {
         flex-direction: column;
         align-items: center;
-        width: 100%;
-        gap: $spacing-xl;
         
         li {
-          font-size: $font-size-xl;
-          margin-bottom: $spacing-lg;
-          width: 100%;
-          text-align: center;
-          
-          a {
-            display: block;
-            padding: $spacing-sm 0;
-            width: 100%;
-          }
+          margin: 10px 0;
         }
       }
     }
   }
 }
 
-@media (max-width: $breakpoint-md) {
-  body.menu-open {
-    overflow: hidden;
+// Body spacing adjustment
+body {
+  padding-top: calc(#{$header-height} + 40px);
+  
+  @media (max-width: 768px) {
+    padding-top: calc(#{$header-height} + 20px);
+  }
+}
+
+// Handle mobile menu open state
+body.menu-open {
+  overflow: hidden;
+}
+
+// Add this to your existing styles but don't apply it yet
+.glassmorphic {
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+// Media query for smaller screens
+@media (max-width: 576px) {
+  .logo .status-indicator .status-text {
+    display: none; // Hide text on very small screens
   }
 } 

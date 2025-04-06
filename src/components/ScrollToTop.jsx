@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
 import '../styles/components/ScrollToTop.scss'
+import { useLocation } from 'react-router-dom'
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false)
+  const { pathname } = useLocation()
 
   // Show button when page is scrolled down
   useEffect(() => {
@@ -18,6 +20,14 @@ const ScrollToTop = () => {
 
     return () => window.removeEventListener('scroll', toggleVisibility)
   }, [])
+
+  useEffect(() => {
+    // When the route changes, scroll to top with smooth animation
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }, [pathname])
 
   // Scroll to top function
   const scrollToTop = () => {
