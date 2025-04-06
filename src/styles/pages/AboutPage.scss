@@ -1,0 +1,203 @@
+.about-page {
+  .page-header {
+    padding: calc(#{$header-height} + #{$spacing-xl}) 0 $spacing-xl;
+    
+    .page-title {
+      font-size: $font-size-4xl;
+      margin-bottom: $spacing-md;
+    }
+  }
+  
+  .about-intro {
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: $spacing-xl;
+      
+      @media (min-width: $breakpoint-lg) {
+        grid-template-columns: 1fr 2fr;
+      }
+    }
+    
+    .about-image {
+      img {
+        width: 100%;
+        border-radius: 12px;
+        
+        @media (min-width: $breakpoint-md) {
+          max-width: 400px;
+        }
+      }
+    }
+    
+    .about-content {
+      h2 {
+        font-size: $font-size-3xl;
+        margin-bottom: $spacing-md;
+      }
+      
+      .lead {
+        font-size: $font-size-xl;
+        line-height: 1.6;
+        color: $dark-gray;
+        margin-bottom: $spacing-lg;
+      }
+      
+      p {
+        margin-bottom: $spacing-md;
+      }
+      
+      .about-cta {
+        margin-top: $spacing-lg;
+      }
+    }
+  }
+  
+  .skills-section {
+    background-color: $light-gray;
+    padding: $spacing-2xl 0;
+    
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: $spacing-xl;
+      
+      @media (min-width: $breakpoint-md) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    .skill-group {
+      .skill-category {
+        font-size: $font-size-xl;
+        margin-bottom: $spacing-md;
+        color: $accent-color;
+      }
+      
+      .skill-list {
+        li {
+          padding: $spacing-sm 0;
+          border-bottom: 1px solid $medium-gray;
+          
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+  }
+  
+  .experience-section {
+    .experience-timeline {
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 2px;
+        background-color: $medium-gray;
+        
+        @media (min-width: $breakpoint-md) {
+          left: 180px;
+        }
+      }
+    }
+    
+    .experience-item {
+      position: relative;
+      padding-left: $spacing-xl;
+      margin-bottom: $spacing-xl;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        left: -4px;
+        top: 0;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: $accent-color;
+        
+        @media (min-width: $breakpoint-md) {
+          left: 176px;
+        }
+      }
+      
+      @media (min-width: $breakpoint-md) {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        padding-left: 0;
+      }
+      
+      .experience-date {
+        font-weight: 600;
+        color: $dark-gray;
+        margin-bottom: $spacing-sm;
+        
+        @media (min-width: $breakpoint-md) {
+          padding-right: $spacing-lg;
+          text-align: right;
+          margin-bottom: 0;
+        }
+      }
+      
+      .experience-content {
+        padding-left: $spacing-lg;
+        
+        .experience-title {
+          font-size: $font-size-lg;
+          margin-bottom: $spacing-xs;
+        }
+        
+        .experience-company {
+          font-weight: 600;
+          color: $accent-color;
+          margin-bottom: $spacing-sm;
+        }
+        
+        .experience-description {
+          color: $dark-gray;
+        }
+      }
+    }
+  }
+  
+  .cta-section {
+    .cta-box {
+      background-color: $primary-color;
+      color: white;
+      padding: $spacing-2xl;
+      border-radius: 12px;
+      text-align: center;
+      
+      h2 {
+        font-size: $font-size-2xl;
+        margin-bottom: $spacing-md;
+      }
+      
+      p {
+        font-size: $font-size-lg;
+        margin-bottom: $spacing-lg;
+        opacity: 0.9;
+      }
+      
+      .cta-button {
+        display: inline-block;
+        background-color: white;
+        color: $primary-color;
+        padding: $spacing-md $spacing-xl;
+        border-radius: 4px;
+        font-weight: 600;
+        transition: all $transition-fast;
+        
+        &:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
+} 

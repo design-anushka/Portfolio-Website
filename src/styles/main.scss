@@ -1,0 +1,30 @@
+@import './test.scss';
+@import './variables.scss';
+@import './reset.scss';
+@import './typography.scss';
+@import './animations.scss';
+@import './layout.scss';
+
+// Components
+@import './components/Header.scss';
+@import './components/Footer.scss';
+@import './components/CursorFollower.scss';
+@import './components/ScrollToTop.scss';
+@import './components/ProjectLayout.scss';
+
+// Pages
+@import './pages/HomePage.scss';
+@import './pages/WorkPage.scss';
+@import './pages/AboutPage.scss';
+@import './pages/ContactPage.scss';
+
+// App styles
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+} 

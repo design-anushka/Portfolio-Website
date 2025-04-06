@@ -1,0 +1,65 @@
+.cursor-follower {
+  position: fixed;
+  pointer-events: none;
+  z-index: $z-index-tooltip;
+  
+  .cursor-dot {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: 4px;
+    height: 4px;
+    background-color: $accent-color;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+  }
+  
+  .cursor-circle {
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    width: 24px;
+    height: 24px;
+    border: 1px solid $accent-color;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease-in-out, height 0.3s ease-in-out, border-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+  
+  &.hidden {
+    opacity: 0;
+  }
+  
+  &.clicked {
+    .cursor-dot {
+      transform: translate(-50%, -50%) scale(2);
+    }
+    
+    .cursor-circle {
+      transform: translate(-50%, -50%) scale(0.8);
+    }
+  }
+  
+  &.link-hovered {
+    .cursor-dot {
+      transform: translate(-50%, -50%) scale(1.5);
+      background-color: white;
+    }
+    
+    .cursor-circle {
+      width: 40px;
+      height: 40px;
+      top: -20px;
+      left: -20px;
+      background-color: $accent-color;
+      opacity: 0.5;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .cursor-follower {
+    display: none;
+  }
+} 

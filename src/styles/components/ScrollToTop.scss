@@ -1,0 +1,23 @@
+.scroll-to-top {
+  position: fixed;
+  bottom: $spacing-md;
+  right: $spacing-md;
+  background-color: $primary-color;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: $z-index-fixed;
+  opacity: 0.7;
+  transition: opacity $transition-fast, transform $transition-fast;
+  
+  &:hover {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+} 

@@ -1,0 +1,118 @@
+.footer {
+  background-color: $primary-color;
+  color: white;
+  padding: $spacing-4xl 0 $spacing-xl;
+  
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3xl;
+  }
+  
+  .footer-main {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xl;
+    
+    @media (min-width: $breakpoint-lg) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+  
+  .footer-heading {
+    font-size: $font-size-3xl;
+    line-height: 1.2;
+    margin: 0;
+    
+    @media (min-width: $breakpoint-lg) {
+      font-size: $font-size-4xl;
+      max-width: 500px;
+    }
+  }
+  
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    
+    .footer-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity $transition-fast;
+      
+      &:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  .resume-button {
+    display: inline-block;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: $spacing-sm $spacing-lg;
+    border-radius: 4px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all $transition-fast;
+    align-self: flex-start;
+    
+    &:hover {
+      background-color: white;
+      color: $primary-color;
+    }
+  }
+  
+  .footer-secondary {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xl;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: $spacing-xl;
+    
+    @media (min-width: $breakpoint-lg) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  
+  .footer-logo {
+    .name {
+      font-size: $font-size-lg;
+      font-weight: 600;
+    }
+  }
+  
+  .footer-nav {
+    .footer-nav-list {
+      display: flex;
+      gap: $spacing-lg;
+      
+      li {
+        a {
+          color: white;
+          text-decoration: none;
+          transition: opacity $transition-fast;
+          
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }
+  
+  .footer-bottom {
+    margin-top: $spacing-xl;
+    padding-top: $spacing-lg;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: $font-size-sm;
+    opacity: 0.7;
+  }
+} 

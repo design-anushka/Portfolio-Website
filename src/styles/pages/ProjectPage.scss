@@ -1,0 +1,286 @@
+.project-page {
+  .project-hero {
+    padding: calc(#{$header-height} + #{$spacing-lg}) 0 $spacing-lg;
+    
+    .project-title {
+      font-size: $font-size-3xl;
+      font-weight: 700;
+      margin-bottom: $spacing-xl;
+      max-width: 800px;
+      
+      @media (min-width: $breakpoint-lg) {
+        font-size: $font-size-4xl;
+      }
+    }
+    
+    .project-hero-image {
+      width: 100%;
+      margin-bottom: $spacing-2xl;
+      
+      img {
+        width: 100%;
+        border-radius: 4px;
+      }
+    }
+  }
+  
+  .project-content {
+    section {
+      margin-bottom: $spacing-4xl;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    
+    .section-title {
+      font-size: $font-size-2xl;
+      font-weight: 700;
+      margin-bottom: $spacing-lg;
+      
+      @media (min-width: $breakpoint-lg) {
+        font-size: $font-size-3xl;
+      }
+    }
+    
+    .section-subtitle {
+      font-size: $font-size-xl;
+      color: $dark-gray;
+      font-weight: 500;
+      margin-bottom: $spacing-3xl;
+      
+      @media (min-width: $breakpoint-lg) {
+        font-size: $font-size-2xl;
+      }
+    }
+    
+    .section-description {
+      font-size: $font-size-lg;
+      color: $dark-gray;
+      margin-bottom: $spacing-xl;
+      max-width: 800px;
+      line-height: 1.6;
+    }
+    
+    // Intro section
+    .project-intro {
+      padding: 0 0 $spacing-xl;
+    }
+    
+    // Process section
+    .project-process {
+      .process-steps {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-lg;
+      }
+      
+      .process-step {
+        display: flex;
+        align-items: flex-start;
+        gap: $spacing-lg;
+        padding-left: $spacing-lg;
+        
+        .step-number {
+          flex-shrink: 0;
+          width: 32px;
+          height: 32px;
+          background-color: $light-gray;
+          color: $accent-color;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 600;
+        }
+        
+        .step-content {
+          .step-name {
+            font-size: $font-size-lg;
+            font-weight: 600;
+            margin-bottom: $spacing-xs;
+          }
+          
+          .step-description {
+            color: $dark-gray;
+            font-size: $font-size-md;
+          }
+        }
+      }
+    }
+    
+    // Features section
+    .project-features {
+      .container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: $spacing-xl;
+        
+        @media (min-width: $breakpoint-lg) {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      
+      .features-image {
+        img {
+          width: 100%;
+          border-radius: 4px;
+        }
+      }
+    }
+    
+    // Content discovery section
+    .project-content-discovery {
+      .discovery-images {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: $spacing-lg;
+        
+        @media (min-width: $breakpoint-md) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        
+        img {
+          width: 100%;
+          border-radius: 4px;
+        }
+      }
+    }
+    
+    // UI Elements section
+    .project-ui-elements {
+      .ui-elements-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: $spacing-lg;
+        
+        @media (min-width: $breakpoint-md) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        
+        img {
+          width: 100%;
+          border-radius: 4px;
+        }
+      }
+    }
+    
+    // Userflows section
+    .project-userflows {
+      .userflows-image {
+        img {
+          width: 100%;
+          border-radius: 4px;
+        }
+      }
+    }
+    
+    // Wireframes section
+    .project-wireframes {
+      .wireframes-image {
+        img {
+          width: 100%;
+          border-radius: 4px;
+        }
+      }
+    }
+    
+    // Final designs section
+    .project-final-designs {
+      .final-designs-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: $spacing-lg;
+        
+        @media (min-width: $breakpoint-md) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        
+        img {
+          width: 100%;
+          border-radius: 4px;
+        }
+      }
+    }
+    
+    // Testimonials section
+    .project-testimonials {
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: $spacing-xl;
+        
+        @media (min-width: $breakpoint-md) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .testimonial {
+          background-color: $light-gray;
+          padding: $spacing-lg;
+          border-radius: 8px;
+          
+          .testimonial-quote {
+            font-style: italic;
+            margin-bottom: $spacing-md;
+            line-height: 1.6;
+          }
+          
+          .testimonial-author {
+            .author-name {
+              font-weight: 600;
+              margin-bottom: 4px;
+            }
+            
+            .author-role {
+              font-size: $font-size-sm;
+              color: $dark-gray;
+            }
+          }
+        }
+      }
+    }
+    
+    // CTA section
+    .project-cta {
+      display: flex;
+      justify-content: center;
+      padding: $spacing-4xl 0;
+      
+      .cta-button {
+        display: inline-block;
+        background-color: $accent-color;
+        color: white;
+        padding: $spacing-md $spacing-2xl;
+        border-radius: 4px;
+        font-weight: 600;
+        font-size: $font-size-lg;
+      }
+    }
+  }
+}
+
+.case-study-page {
+  padding-top: $header-height; // Add space for header
+  min-height: calc(100vh - #{$header-height});
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: white;
+  
+  .case-study-image-container {
+    width: 100%;
+    max-width: 1080px; // Control maximum width of the case study
+    margin: 0 auto;
+    padding: 0 $spacing-md;
+    
+    @media (min-width: $breakpoint-lg) {
+      padding: 0;
+    }
+    
+    .case-study-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+} 

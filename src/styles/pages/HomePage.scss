@@ -1,0 +1,339 @@
+// Hero Section
+.hero-section {
+  padding: 120px 0 64px;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  
+  .hero-content {
+    max-width: 800px;
+    
+    .hero-greeting {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      
+      @media (min-width: 1024px) {
+        font-size: 64px;
+      }
+    }
+    
+    .hero-description {
+      font-size: 20px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+      
+      @media (min-width: 1024px) {
+        font-size: 24px;
+      }
+    }
+    
+    .hero-status {
+      font-size: 18px;
+      margin-bottom: 32px;
+      color: #666;
+    }
+    
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      background-color: #000;
+      color: white;
+      padding: 16px 24px;
+      border-radius: 4px;
+      font-weight: 600;
+      text-decoration: none;
+      
+      .arrow {
+        margin-left: 8px;
+        transition: transform 0.2s ease;
+      }
+      
+      &:hover {
+        background-color: #333;
+        
+        .arrow {
+          transform: translateX(4px);
+        }
+      }
+    }
+  }
+}
+
+// Work Section
+.work-section {
+  padding: $spacing-4xl 0;
+  
+  .section-title {
+    font-size: $font-size-3xl;
+    margin-bottom: $spacing-3xl;
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-3xl;
+    margin-bottom: $spacing-3xl;
+    
+    @media (min-width: $breakpoint-md) {
+      grid-template-columns: repeat(2, 1fr);
+      
+      .project-card.featured {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: $spacing-xl;
+      }
+    }
+  }
+  
+  .project-card {
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: $light-gray;
+    transition: transform $transition-normal;
+    
+    &:hover {
+      transform: translateY(-10px);
+      
+      .project-image img {
+        transform: scale(1.05);
+      }
+      
+      .project-link .arrow {
+        transform: translateX(4px);
+      }
+    }
+    
+    &.large {
+      display: grid;
+      grid-template-columns: 1fr;
+      
+      @media (min-width: $breakpoint-lg) {
+        grid-template-columns: 1.5fr 1fr;
+      }
+      
+      .project-image {
+        height: 100%;
+        
+        img {
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+  
+  .project-image {
+    height: 240px;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $transition-normal;
+    }
+  }
+  
+  .project-info {
+    padding: $spacing-lg;
+  }
+  
+  .project-type {
+    display: inline-block;
+    font-size: $font-size-sm;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: $spacing-sm;
+    color: $dark-gray;
+  }
+  
+  .project-title {
+    font-size: $font-size-2xl;
+    margin-bottom: $spacing-sm;
+  }
+  
+  .project-description {
+    color: $dark-gray;
+    margin-bottom: $spacing-md;
+  }
+  
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    color: $accent-color;
+    
+    .arrow {
+      margin-left: $spacing-sm;
+      transition: transform $transition-fast;
+    }
+  }
+  
+  .cta-container {
+    display: flex;
+    justify-content: center;
+    margin-top: $spacing-xl;
+  }
+}
+
+// Testimonials Section
+.testimonials-section {
+  background-color: $light-gray;
+  padding: $spacing-3xl 0;
+  overflow: hidden;
+  
+  .testimonials-container {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .testimonials-track {
+    display: flex;
+    animation: scroll 40s linear infinite;
+    width: max-content;
+  }
+  
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  .testimonial-card {
+    flex: 0 0 auto;
+    width: 300px;
+    background-color: white;
+    padding: $spacing-lg;
+    margin-right: $spacing-md;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    
+    @media (min-width: $breakpoint-md) {
+      width: 400px;
+    }
+    
+    .testimonial-text {
+      font-size: $font-size-md;
+      line-height: 1.6;
+      margin-bottom: $spacing-md;
+      font-style: italic;
+    }
+    
+    .testimonial-author {
+      .author-name {
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+      
+      .author-role {
+        font-size: $font-size-sm;
+        color: $dark-gray;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// Process Section
+.process-section {
+  .process-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+    
+    @media (min-width: $breakpoint-md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (min-width: $breakpoint-lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .process-card {
+    padding: $spacing-xl;
+    border-radius: 8px;
+    background-color: $light-gray;
+    transition: transform $transition-normal, box-shadow $transition-normal;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .process-step {
+      font-size: $font-size-xl;
+      margin-bottom: $spacing-md;
+      color: $accent-color;
+      font-weight: 600;
+    }
+    
+    .process-description {
+      color: $dark-gray;
+      line-height: 1.6;
+    }
+  }
+}
+
+// Contact CTA Section
+.contact-cta-section {
+  padding: $spacing-5xl 0;
+  background-color: $primary-color;
+  color: white;
+  text-align: center;
+  
+  .contact-cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .contact-cta-title {
+    font-size: $font-size-4xl;
+    margin-bottom: $spacing-xl;
+    
+    @media (min-width: $breakpoint-lg) {
+      font-size: $font-size-5xl;
+    }
+    
+    .highlight {
+      color: $accent-color;
+    }
+  }
+  
+  .contact-cta-text {
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-2xl;
+    opacity: 0.9;
+  }
+  
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: white;
+    color: $primary-color;
+    padding: $spacing-md $spacing-xl;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all $transition-fast;
+    
+    .arrow {
+      margin-left: $spacing-sm;
+      transition: transform $transition-fast;
+    }
+    
+    &:hover {
+      background-color: $accent-color;
+      color: white;
+      
+      .arrow {
+        transform: translateX(4px);
+      }
+    }
+  }
+} 
