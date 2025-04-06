@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import '../styles/components/Header.scss'
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const location = useLocation()
+  const isHomePage = location.pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,16 +49,28 @@ const Header = () => {
     }
   }
 
+  // Logo click handler - conditional based on current page
+  const handleLogoClick = (e) => {
+    if (isHomePage) {
+      e.preventDefault()
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+    // If not homepage, Link component handles routing
+  }
+
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
       <div className="container">
         <div className="header-content">
-          <a href="#hero" className="logo" onClick={(e) => {
-            e.preventDefault()
-            window.scrollTo({ top: 0, behavior: 'smooth' })
-          }}>
-            <span className="logo-letter">A</span>
-          </a>
+          {isHomePage ? (
+            <a href="#hero" className="logo" onClick={handleLogoClick}>
+              <span className="logo-letter">A</span>
+            </a>
+          ) : (
+            <Link to="/" className="logo">
+              <span className="logo-letter">A</span>
+            </Link>
+          )}
           
           <button 
             className={`mobile-menu-toggle ${menuOpen ? 'active' : ''}`} 

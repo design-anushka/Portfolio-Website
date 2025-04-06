@@ -1,4 +1,4 @@
-import { useParams, Navigate } from 'react-router-dom'
+import { useParams, Navigate, Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import '../styles/pages/ProjectPage.scss'
 
@@ -26,7 +26,8 @@ const projectsData = {
 const placeholderImages = {
   'epic-on': 'https://placehold.co/1080x7000/e2e8f0/334155?text=Epic+ON+Case+Study',
   'pebble-impact': 'https://placehold.co/1080x7000/e2e8f0/334155?text=Pebble+Impact+Case+Study',
-  'corpcare': 'https://placehold.co/1080x7000/e2e8f0/334155?text=Corpcare+Case+Study'
+  'corpcare': 'https://placehold.co/1080x7000/e2e8f0/334155?text=Corpcare+Case+Study',
+  'feedify': 'https://placehold.co/1080x7000/e2e8f0/334155?text=Feedify+Case+Study'
 }
 
 const ProjectPage = () => {
@@ -47,9 +48,22 @@ const ProjectPage = () => {
 
   return (
     <div className="case-study-page">
+      {/* Breadcrumb navigation */}
+      <div className="breadcrumb-container">
+        <div className="container">
+          <div className="breadcrumb">
+            <Link to="/">Home</Link>
+            <span className="separator">/</span>
+            <Link to="/#work">Work</Link>
+            <span className="separator">/</span>
+            <span className="current">{project.title}</span>
+          </div>
+        </div>
+      </div>
+      
       <div className="case-study-image-container">
         <img 
-          src={project.caseStudyImage} 
+          src={imageUrl} 
           alt={`${project.title} Case Study`} 
           className="case-study-image"
         />

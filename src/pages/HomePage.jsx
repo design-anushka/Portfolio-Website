@@ -24,6 +24,13 @@ const HomePage = () => {
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
       tags: ['Product Design', 'Interaction Design'],
       slug: 'corpcare'
+    },
+    {
+      id: 4,
+      title: 'Feedify',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+      tags: ['UX Research', 'Mobile Design', 'Prototyping'],
+      slug: 'feedify'
     }
   ]
 
@@ -73,18 +80,21 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
-      {/* Hero Section - Updated */}
+      {/* Hero Section with only "I'm Anushka" clickable */}
       <section className="hero-section" id="hero">
         <div className="container">
           <div className="hero-content">
-            <a href="#about" className="hero-title-wrapper" onClick={(e) => {
-              e.preventDefault();
-              document.getElementById('about').scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
-            }}>
-              <h1 className="hero-title">
-                <span className="hero-title-part">I'm Anushka,</span> <span className="hero-description-part">designer crafting impactful digital experiences that quietly enhance daily life and leave a lasting trace of positive change.</span>
-              </h1>
-            </a>
+            <h1 className="hero-title">
+              <a href="#about" 
+                className="hero-title-link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('about').scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+                }}>
+                <span className="hero-title-part">I'm Anushka,</span>
+              </a>
+              <span className="hero-description-part">designer crafting impactful digital experiences that quietly enhance daily life and leave a lasting trace of positive change.</span>
+            </h1>
             
             <div className="hero-actions-wrapper">
               <div className="hero-actions">
@@ -135,12 +145,6 @@ const HomePage = () => {
               </div>
             ))}
           </div>
-          
-          <div className="cta-explore-more">
-            <Link to="/work" className="explore-more-button">
-              Explore More Work <span className="arrow">→</span>
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -164,9 +168,16 @@ const HomePage = () => {
                   <a href="/Anushka Singh_UX Manager_Resume.pdf" target="_blank" rel="noopener noreferrer" className="cta-button primary">
                     View my CV <span className="arrow">→</span>
                   </a>
-                  <Link to="/contact" className="cta-button secondary">
+                  <a 
+                    href="#contact" 
+                    className="cta-button secondary"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+                    }}
+                  >
                     Let's Talk <span className="arrow">→</span>
-                  </Link>
+                  </a>
                 </div>
               </div>
               

@@ -1289,4 +1289,28 @@
 .process-section {
   padding-top: $spacing-3xl;
   padding-bottom: $spacing-3xl;
+}
+
+// Add specific styles for the hero title link
+.hero-title-link {
+  text-decoration: none;
+  color: inherit;
+  
+  &:hover .hero-title-part {
+    color: darken(#7c5cfc, 10%);
+    transform: scale(1.03);
+    text-shadow: 0 5px 15px rgba(124, 92, 252, 0.3);
+  }
+  
+  .hero-title-part {
+    color: #7c5cfc;
+    display: inline-block;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: left center;
+  }
+}
+
+.hero-description-part {
+  color: #5d6b98;
+  display: inline;
 } 
