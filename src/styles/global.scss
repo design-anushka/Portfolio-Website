@@ -1,0 +1,21 @@
+// Add custom cursor styles
+// First, import the magic wand cursor image in your global styles
+@import 'variables';
+
+// Custom cursor styles
+.magic-cursor {
+  cursor: url('/images/cursors/magic-wand.png'), pointer !important;
+}
+
+// Apply to all major interactive elements
+a, 
+button, 
+.cta-button, 
+.explore-more-button, 
+.view-case-study,
+.testimonial-card,
+.project-card,
+.process-card,
+.hero-title-wrapper {
+  @extend .magic-cursor;
+} 
