@@ -1,12 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/components/Footer.scss';
 
 const Footer = () => {
   const [showPhonePopup, setShowPhonePopup] = useState(false);
+  const [showEmailPopup, setShowEmailPopup] = useState(false);
+  const [isAppleDevice, setIsAppleDevice] = useState(false);
   const phoneNumber = "+91-9266435534";
+  const emailAddress = "design.anushka@gmail.com";
   
   // Format phone number for WhatsApp (remove non-numeric characters)
   const whatsappNumber = phoneNumber.replace(/\D/g, '');
+  
+  // Detect if user is on Apple device (macOS or iOS)
+  useEffect(() => {
+    const userAgent = navigator.userAgent.toLowerCase();
+    const isApple = /(mac|iphone|ipad|ipod)/.test(userAgent);
+    setIsAppleDevice(isApple);
+  }, []);
+  
+  // Function to handle email click based on platform
+  const handleEmailClick = (e) => {
+    // For non-Apple devices on desktop, show popup
+    if (!isAppleDevice && !isMobileDevice()) {
+      e.preventDefault();
+      setShowEmailPopup(true);
+    }
+    // For Apple devices, show popup
+    else if (isAppleDevice) {
+      e.preventDefault();
+      setShowEmailPopup(true);
+    }
+    // For Android devices, directly open Gmail
+    else {
+      // The default mailto: will work for mobile devices
+    }
+  };
+  
+  // Function to detect if the user is on a mobile device
+  const isMobileDevice = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  };
   
   return (
     <footer className="footer">
@@ -26,7 +59,7 @@ const Footer = () => {
             
             {/* Contact options */}
             <div className="contact-options">
-              {/* Changed to button to show popup instead of linking */}
+              {/* Phone option */}
               <button 
                 className="contact-option"
                 onClick={() => setShowPhonePopup(true)}
@@ -39,7 +72,12 @@ const Footer = () => {
                 Give me a call
               </button>
               
-              <a href="mailto:hello@anushkasingh.com" className="contact-option">
+              {/* Email option - with conditional popup or direct link */}
+              <a 
+                href={`mailto:${emailAddress}`} 
+                className="contact-option"
+                onClick={handleEmailClick}
+              >
                 <span className="contact-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
@@ -100,6 +138,50 @@ const Footer = () => {
                       </svg>
                       WhatsApp
                     </a>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            {/* Email popup - Only shows on desktop or Apple devices */}
+            {showEmailPopup && (
+              <div className="email-popup">
+                <div className="popup-content">
+                  <button 
+                    className="close-popup"
+                    onClick={() => setShowEmailPopup(false)}
+                  >
+                    ×
+                  </button>
+                  <h3 className="popup-title">Send me an email</h3>
+                  <p className="popup-message">Choose your preferred email client:</p>
+                  <p className="email-address">{emailAddress}</p>
+                  <div className="popup-actions">
+                    <a 
+                      href={`https://mail.google.com/mail/?view=cm&fs=1&to=${emailAddress}`}
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="popup-action gmail"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                      </svg>
+                      Gmail
+                    </a>
+                    
+                    {/* Only show Apple Mail option on Apple devices */}
+                    {isAppleDevice && (
+                      <a 
+                        href={`mailto:${emailAddress}`}
+                        className="popup-action apple-mail"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                        Apple Mail
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>

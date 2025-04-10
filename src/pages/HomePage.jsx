@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import '../styles/pages/HomePage.scss'
+import { useEffect, useRef } from 'react'
 
 const HomePage = () => {
   // Featured projects data
@@ -78,9 +79,80 @@ const HomePage = () => {
     }
   ]
 
+  const PhotoGalleryRef = useRef(null);
+
+  useEffect(() => {
+    const slider = PhotoGalleryRef.current;
+    if (!slider) return;
+    
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    
+    const mouseDown = (e) => {
+      isDown = true;
+      slider.classList.add('active');
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    };
+    
+    const mouseLeave = () => {
+      isDown = false;
+      slider.classList.remove('active');
+    };
+    
+    const mouseUp = () => {
+      isDown = false;
+      slider.classList.remove('active');
+    };
+    
+    const mouseMove = (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 2; // Scroll speed
+      slider.scrollLeft = scrollLeft - walk;
+    };
+    
+    // Touch events for mobile
+    const touchStart = (e) => {
+      isDown = true;
+      slider.classList.add('active');
+      startX = e.touches[0].pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    };
+    
+    const touchMove = (e) => {
+      if (!isDown) return;
+      const x = e.touches[0].pageX - slider.offsetLeft;
+      const walk = (x - startX) * 2;
+      slider.scrollLeft = scrollLeft - walk;
+    };
+    
+    slider.addEventListener('mousedown', mouseDown);
+    slider.addEventListener('mouseleave', mouseLeave);
+    slider.addEventListener('mouseup', mouseUp);
+    slider.addEventListener('mousemove', mouseMove);
+    
+    slider.addEventListener('touchstart', touchStart);
+    slider.addEventListener('touchend', mouseUp);
+    slider.addEventListener('touchmove', touchMove);
+    
+    return () => {
+      slider.removeEventListener('mousedown', mouseDown);
+      slider.removeEventListener('mouseleave', mouseLeave);
+      slider.removeEventListener('mouseup', mouseUp);
+      slider.removeEventListener('mousemove', mouseMove);
+      
+      slider.removeEventListener('touchstart', touchStart);
+      slider.removeEventListener('touchend', mouseUp);
+      slider.removeEventListener('touchmove', touchMove);
+    };
+  }, []);
+
   return (
     <div className="home-page">
-      {/* Hero Section with only "I'm Anushka" clickable */}
+      {/* Hero Section with updated CTA and non-highlighted Immediate Joiner */}
       <section className="hero-section" id="hero">
         <div className="container">
           <div className="hero-content">
@@ -93,7 +165,7 @@ const HomePage = () => {
                 }}>
                 <span className="hero-title-part">I'm Anushka,</span>
               </a>
-              <span className="hero-description-part">designer crafting impactful digital experiences that quietly enhance daily life and leave a lasting trace of positive change.</span>
+              <span className="hero-description-part"> a designer crafting impactful digital experiences that quietly enhance daily life and leave a lasting trace of positive change.</span>
             </h1>
             
             <div className="hero-actions-wrapper">
@@ -103,12 +175,12 @@ const HomePage = () => {
                     e.preventDefault();
                     document.getElementById('work').scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
                   }}>
-                    Explore my work <span className="arrow">→</span>
+                    Explore my work <span className="button-arrow">→</span>
                   </a>
                 </div>
                 
                 <div className="hero-status">
-                  <p className="status-text">Actively seeking full-time opportunity | Immediate Joiner</p>
+                  <p className="status-text">Actively seeking full-time opportunity | <span className="highlight">Immediate Joiner</span></p>
                   <p className="previous-text">Previously worked with Fluidesigns, Cognizant</p>
                 </div>
               </div>
@@ -117,7 +189,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Work Section */}
+      {/* Work Section with updated card styles and hover effects */}
       <section className="work-section section" id="work">
         <div className="container">
           <h2 className="section-title">Some of my handpicked work</h2>
@@ -140,7 +212,7 @@ const HomePage = () => {
                   </Link>
                 </div>
                 <div className="project-image">
-                  <img src={`/images/placeholder-${project.id}.jpg`} alt={project.title} className="grayscale-img" />
+                  <img src={`/images/placeholder-${project.id}.jpg`} alt={project.title} />
                 </div>
               </div>
             ))}
@@ -225,8 +297,8 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Design Process Section - Updated for white background */}
-      <section className="process-section section">
+      {/* Design Process Section with updated styles */}
+      <section className="process-section section" id="process">
         <div className="container">
           <h2 className="section-title">How I Design</h2>
           
@@ -305,6 +377,154 @@ const HomePage = () => {
               <div className="tool-chip">
                 <img src="/images/tools/framer.svg" alt="Framer" />
                 Framer
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* When I'm Not... Section - Updated to match reference image */}
+      <section className="when-im-not-section section">
+        <div className="container">
+          <h2 className="section-title">WHEN I'M NOT...</h2>
+          
+          <div className="photo-gallery-container">
+            <div className="photo-gallery-track" ref={PhotoGalleryRef}>
+              <div className="photo-item">
+                <div className="photo-clip"></div>
+                <div className="photo-frame">
+                  <img src="/images/hobbies/hiking.jpg" alt="Being Candid" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Being Candid</p>
+                    <p className="caption-location">Dang falls, Gujarat</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="photo-item">
+                <div className="photo-clip"></div>
+                <div className="photo-frame">
+                  <img src="/images/hobbies/photography.jpg" alt="Having an headache" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Having an headache</p>
+                    <p className="caption-location">Dang falls, Gujarat</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="photo-item">
+                <div className="photo-clip"></div>
+                <div className="photo-frame">
+                  <img src="/images/hobbies/beach.jpg" alt="Bonding with brother" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Bonding with brother</p>
+                    <p className="caption-location">Valley of Flowers</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="photo-item">
+                <div className="photo-clip"></div>
+                <div className="photo-frame">
+                  <img src="/images/hobbies/reading.jpg" alt="Chilling at 12000 ft" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Chilling at 12000 ft</p>
+                    <p className="caption-location">Chandrashila</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="photo-item">
+                <div className="photo-clip"></div>
+                <div className="photo-frame">
+                  <img src="/images/hobbies/cooking.jpg" alt="Near to death" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Near to death</p>
+                    <p className="caption-location">Mana village</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="photo-item">
+                <div className="photo-clip"></div>
+                <div className="photo-frame">
+                  <img src="/images/hobbies/travel.jpg" alt="Being the main character" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Being the main character</p>
+                    <p className="caption-location">Pondicherry</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Social media section like in the reference image */}
+              
+              {/* Duplicate photos for continuous scrolling */}
+              <div className="photo-item">
+                <div className="photo-clip clip-red"></div>
+                <div className="photo-frame">
+                  <img src="/images/hobbies/hiking.jpg" alt="Hiking in mountains" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Conquering peaks</p>
+                    <p className="caption-location">Himalayas</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="photo-item">
+                <div className="photo-clip clip-blue"></div>
+                <div className="photo-frame">
+                  <img src="/images/hobbies/photography.jpg" alt="Taking photos" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Capturing moments</p>
+                    <p className="caption-location">Western Ghats</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="photo-item">
+                <div className="photo-clip clip-red"></div>
+                <div className="photo-frame">
+                  <img src="/images/hobbies/beach.jpg" alt="Beach sunset" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Beach sunsets</p>
+                    <p className="caption-location">Goa</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="photo-item">
+                <div className="photo-clip clip-blue"></div>
+                <div className="photo-frame">
+                  <img src="/images/hobbies/reading.jpg" alt="Reading books" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Getting lost in books</p>
+                    <p className="caption-location">My happy place</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="photo-item">
+                <div className="photo-clip clip-red"></div>
+                <div className="photo-frame">
+                  <img src="/images/hobbies/cooking.jpg" alt="Cooking" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Cooking experiments</p>
+                    <p className="caption-location">Home kitchen</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="photo-item">
+                <div className="photo-clip clip-blue"></div>
+                <div className="photo-frame">
+                  <img src="/images/hobbies/travel.jpg" alt="Traveling" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Exploring new places</p>
+                    <p className="caption-location">Everywhere</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
