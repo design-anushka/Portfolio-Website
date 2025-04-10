@@ -8,29 +8,29 @@ const HomePage = () => {
     {
       id: 1,
       title: 'Epic ON',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-      tags: ['Product Design', 'Interaction Design'],
+      description: 'Transforming EPIC ON\'s experience by reimagining the entire platform with immersive content discovery, behavioral insights, and responsive interactions—creating a streaming ecosystem that adapts to users, not the other way around.',
+      tags: ['OTT', 'Mobile App, Web App, TV App, Tablet App'],
       slug: 'epic-on'
     },
     {
       id: 2,
       title: 'Pebble Impact Website',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-      tags: ['Product Design', 'Web Design', 'Branding'],
+      description: 'Redesigned Pebble\'s website with clean layouts and interactive product displays, making it easier for customers to understand the product range and find their ideal wearable tech through intuitive navigation and clear, benefit-focused product descriptions.',
+      tags: ['Branding', 'Web Design', 'Nonprofit'],
       slug: 'pebble-impact'
     },
     {
       id: 3,
       title: 'Corpcare',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-      tags: ['Product Design', 'Interaction Design'],
+      description: 'Revamping CorpCare\'s investment platform with intuitive navigation and simplified order placement flows, making complex financial decisions approachable for high-net-worth individuals while providing clear visibility into portfolio performance and opportunities.',
+      tags: ['Platform Revamp - UI/UX', 'Fintech'],
       slug: 'corpcare'
     },
     {
       id: 4,
       title: 'Feedify',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-      tags: ['UX Research', 'Mobile Design', 'Prototyping'],
+      description: 'Designed an interactive, conversion-focused experience with intuitive flows, modular components, and personalised touchpoints to drive user action and engagement.',
+      tags: ['UI/UX', 'Reponsive Website Design', 'B2B Sales Enablement'],
       slug: 'feedify'
     }
   ]
@@ -229,11 +229,18 @@ const HomePage = () => {
             <div className="about-content">
               <div className="about-text-container">
                 <p className="about-text">
-                  I'm Anushka, a product designer with a passion for creating intuitive digital experiences that solve real problems. With a background in UX design and a curious mindset, I approach each project with empathy and attention to detail.
+                  I started my career in QA after completing my B.Tech in CSE, gaining a solid foundation in how products function, from user flows to edge cases. This phase sharpened my analytical thinking and eye for detail—but it also sparked a deeper curiosity about user behaviour and experience.
                 </p>
                 
                 <p className="about-text">
-                  Currently working as a UX Manager, I've spent the last 5 years collaborating with cross-functional teams to deliver impactful design solutions across various platforms. My process combines strategic thinking with creative execution to create experiences that are both beautiful and functional.
+                  Over the past 4.6 years, I've purposefully transitioned into UX design, bringing with me empathy, structure, and a problem-solving mindset. I now work across UX research, information architecture, wireframing, and strategy—crafting intuitive, user-first experiences that simplify complexity and create lasting impact.
+                </p>
+                
+                <p className="about-text">
+                  What drives me?
+                  <br />– Solving real-world problems through thoughtful design
+                  <br />– Creating seamless journeys backed by research
+                  <br />– Bringing clarity to complexity with clean workflows
                 </p>
                 
                 <div className="about-cta-group">
@@ -512,13 +519,15 @@ const HomePage = () => {
               </div>
               
               {/* Remaining duplicated items with vertical clips */}
-              <div className="photo-item">
+                           {/* Remaining duplicated items with vertical clips */}
+                           <div className="photo-item">
                 <div className="photo-clip">
                   <div className="divider"></div>
                   <div className="grain"></div>
                   <div className="grain"></div>
                   <div className="grain"></div>
                   <div className="grain"></div>
+                </div>
                 <div className="photo-clip"></div>
                 <div className="photo-frame">
                   <img src="/images/hobbies/photography.jpg" alt="Having an headache" />

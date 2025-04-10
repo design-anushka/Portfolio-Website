@@ -26,7 +26,7 @@ const AboutPage = () => {
             <div className="about-content">
               <h2>Hi, I'm Anushka!</h2>
               <p className="lead">
-                a designer crafting impactful digital experiences that quietly enhance daily life and leave a lasting trace of positive change.
+                 a designer crafting impactful digital experiences that quietly enhance daily life and leave a lasting trace of positive change.
               </p>
               <p>
                 With over 5 years of experience in UX/UI design, I've collaborated with startups and established companies to create user-centered digital products that solve real problems.
