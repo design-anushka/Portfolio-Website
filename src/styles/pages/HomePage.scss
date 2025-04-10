@@ -1382,86 +1382,48 @@
 // Updated "When I'm Not..." section with different clips and continuous movement
 .when-im-not-section {
   padding: $spacing-4xl 0;
-  background-color: #1e3a8a; // Dark blue background like in the image
-  color: white;
   position: relative;
-  overflow: hidden;
   
+  // Updated heading to match other sections
   .section-title {
-    color: white;
-    background-color: #f472b6; // Pink background for heading
-    display: inline-block;
-    padding: $spacing-sm $spacing-2xl;
-    margin-bottom: $spacing-4xl;
-    border-radius: 4px;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    
-    // Remove the default underline
-    &::after {
-      content: none;
-    }
+    // Use the common section title styling
+    // No custom styles needed here as it will inherit from the common styles
   }
   
   .photo-gallery-container {
     width: 100%;
     position: relative;
-    margin-top: $spacing-3xl;
-    padding: $spacing-xl 0;
+    margin-top: $spacing-2xl;
+    overflow: hidden;
   }
   
-  // Create the clothesline effect
+  // Auto-rotating track
   .photo-gallery-track {
     display: flex;
-    flex-wrap: nowrap;
     gap: $spacing-xl;
-    overflow-x: auto;
-    padding: $spacing-lg $spacing-xl;
-    position: relative;
-    scroll-behavior: smooth;
-    justify-content: center;
-    
-    // Add the string/clothesline
-    &::before {
-      content: '';
-      position: absolute;
-      top: 20px;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background-color: #f59e0b; // Golden/orange string like in image
-      z-index: 1;
+    animation: infiniteScroll 40s linear infinite;
+    width: max-content;
+    padding: $spacing-md $spacing-lg;
+  }
+  
+  // Animation for auto-rotation
+  @keyframes infiniteScroll {
+    0% {
+      transform: translateX(0);
     }
-    
-    // Custom scrollbar
-    &::-webkit-scrollbar {
-      height: 6px;
-    }
-    
-    &::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-    }
-    
-    &::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 10px;
-    }
-    
-    &.active {
-      cursor: grabbing;
+    100% {
+      transform: translateX(calc(-320px * 6 - #{$spacing-xl} * 6));
     }
   }
   
   .photo-item {
     flex: 0 0 auto;
-    width: 280px;
-    margin: $spacing-xl $spacing-sm 0;
+    width: 320px;
+    margin: $spacing-md $spacing-sm;
     position: relative;
     transform-origin: center;
     transform: rotate(calc(var(--rotation, 0) * 1deg));
-    transition: transform $transition-fast;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     
     // Assign different rotations to each photo
     &:nth-child(1) { --rotation: -3; }
@@ -1480,149 +1442,125 @@
     &:nth-child(12) { --rotation: 4; }
     
     &:hover {
-      transform: rotate(0deg) scale(1.05);
-      z-index: 2;
+      transform: scale(1.08);
+      z-index: 10;
       
       .photo-frame {
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      }
+      
+      .photo-clip {
+        transform: rotate(5deg);
       }
     }
   }
   
-  // Paper clip design like in the image
+  // Updated vertical wooden clothespin clip design
   .photo-clip {
     position: absolute;
-    top: -15px;
+    top: -40px; // Position higher to accommodate vertical orientation
     left: 50%;
+    width: 20px; // Narrower for vertical orientation
+    height: 60px; // Taller for vertical orientation
     transform: translateX(-50%);
-    width: 30px;
-    height: 60px;
-    background-color: #dc2626; // Red clips like in the image
-    border-radius: 5px 5px 0 0;
+    transition: transform $transition-fast;
     z-index: 3;
     
-    // Create the clip shape
+    // Wooden clothespin base
+    background: linear-gradient(to right, #e6d2b5 0%, #d4b78f 100%);
+    border-radius: 4px 4px 10px 10px; // Rounded at bottom for vertical pin
+    
+    // Create the clip opening at bottom
     &::before {
       content: '';
       position: absolute;
-      top: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 15px;
+      bottom: 0;
+      left: 0;
+      right: 0;
       height: 15px;
-      border-radius: 50%;
-      background-color: #f8fafc;
+      background: linear-gradient(to right, #e6d2b5 0%, #d4b78f 100%);
+      border-radius: 0 0 10px 10px;
+      border-top: 1px solid rgba(0, 0, 0, 0.2);
     }
     
+    // Metal spring in the middle
     &::after {
       content: '';
       position: absolute;
-      top: 15px;
+      top: 65%;
       left: 50%;
-      transform: translateX(-50%);
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background-color: #dc2626;
+      background: linear-gradient(135deg, #bbb 0%, #777 100%);
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    }
+    
+    // Add "grain" lines to make it look like wood
+    .grain {
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      width: 10px;
+      height: 1px;
+      background-color: rgba(101, 67, 33, 0.2);
+      transform: translateX(-50%);
+      
+      &:nth-child(2) { top: 12px; }
+      &:nth-child(3) { top: 20px; }
+      &:nth-child(4) { top: 28px; }
+    }
+    
+    // Center divider line
+    .divider {
+      position: absolute;
+      top: 5px;
+      bottom: 15px;
+      left: 50%;
+      width: 1px;
+      background-color: rgba(0, 0, 0, 0.15);
+      transform: translateX(-50%);
+    }
+    
+    // Remove color variations as we're using wooden style for all
+    &.clip-red, &.clip-blue {
+      background: linear-gradient(to right, #e6d2b5 0%, #d4b78f 100%);
     }
   }
   
   .photo-frame {
     background-color: white;
-    border-radius: 2px;
-    padding: $spacing-sm;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    transition: all $transition-fast;
-    overflow: hidden;
+    border-radius: 8px;
+    padding: $spacing-md;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
     
     img {
       width: 100%;
       aspect-ratio: 3/2;
       object-fit: cover;
-      border-radius: 0;
+      border-radius: 4px;
       display: block;
     }
   }
   
-  // Caption below the photo like in the image
+  // Caption styling
   .photo-caption {
-    background-color: white;
-    color: #1e293b;
-    padding: $spacing-xs $spacing-sm;
-    text-align: left;
+    margin-top: $spacing-xs;
+    padding: $spacing-xs 0;
     
     .caption-title {
       font-weight: 600;
-      font-size: $font-size-md;
-      margin-bottom: $spacing-xs;
+      font-size: $font-size-lg;
+      color: $text-color;
+      margin-bottom: 2px;
     }
     
     .caption-location {
-      font-size: $font-size-sm;
-      color: #0369a1;
-    }
-  }
-  
-  // Social media section like in the reference
-  .social-media-section {
-    text-align: center;
-    margin-top: $spacing-5xl;
-    padding: 0 $spacing-xl;
-    font-family: 'Impact', 'Arial Black', sans-serif;
-    
-    p {
-      font-size: $font-size-2xl;
-      line-height: 1.3;
-      margin-bottom: $spacing-xl;
-      text-transform: uppercase;
-      color: white;
-      
-      @media (min-width: $breakpoint-md) {
-        font-size: $font-size-3xl;
-      }
-    }
-    
-    .social-icons {
-      display: flex;
-      gap: $spacing-lg;
-      justify-content: center;
-      align-items: center;
-      
-      .social-icon {
-        width: 60px;
-        height: 60px;
-        border-radius: 4px;
-        background-color: #f3f4f6;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transform: rotate(calc(var(--icon-rotation, 0) * 1deg));
-        
-        &.instagram { 
-          --icon-rotation: -15;
-          background-color: #ff8a00;
-        }
-        
-        &.linkedin { 
-          --icon-rotation: 10; 
-          background-color: #0a66c2;
-        }
-        
-        &.behance { 
-          --icon-rotation: -5;
-          background-color: #1769ff;
-        }
-        
-        &.dribbble { 
-          --icon-rotation: 15;
-          background-color: #ea4c89;
-        }
-        
-        img {
-          width: 32px;
-          height: 32px;
-        }
-      }
+      font-size: $font-size-md;
+      color: $accent-color;
     }
   }
 }

@@ -383,15 +383,22 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* When I'm Not... Section - Updated to match reference image */}
+      {/* When I'm Not... Section - Updated with vertical wooden clothespin clips */}
       <section className="when-im-not-section section">
         <div className="container">
-          <h2 className="section-title">WHEN I'M NOT...</h2>
+          <h2 className="section-title">When I'm Not...</h2>
           
           <div className="photo-gallery-container">
-            <div className="photo-gallery-track" ref={PhotoGalleryRef}>
+            <div className="photo-gallery-track">
+              {/* First set of photos with updated vertical clips */}
               <div className="photo-item">
-                <div className="photo-clip"></div>
+                <div className="photo-clip">
+                  <div className="divider"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                </div>
                 <div className="photo-frame">
                   <img src="/images/hobbies/hiking.jpg" alt="Being Candid" />
                   <div className="photo-caption">
@@ -402,6 +409,116 @@ const HomePage = () => {
               </div>
               
               <div className="photo-item">
+                <div className="photo-clip">
+                  <div className="divider"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                </div>
+                <div className="photo-frame">
+                  <img src="/images/hobbies/photography.jpg" alt="Having an headache" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Having an headache</p>
+                    <p className="caption-location">Dang falls, Gujarat</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="photo-item">
+                <div className="photo-clip">
+                  <div className="divider"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                </div>
+                <div className="photo-frame">
+                  <img src="/images/hobbies/beach.jpg" alt="Bonding with brother" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Bonding with brother</p>
+                    <p className="caption-location">Valley of Flowers</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="photo-item">
+                <div className="photo-clip">
+                  <div className="divider"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                </div>
+                <div className="photo-frame">
+                  <img src="/images/hobbies/reading.jpg" alt="Chilling at 12000 ft" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Chilling at 12000 ft</p>
+                    <p className="caption-location">Chandrashila</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="photo-item">
+                <div className="photo-clip">
+                  <div className="divider"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                </div>
+                <div className="photo-frame">
+                  <img src="/images/hobbies/cooking.jpg" alt="Near to death" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Near to death</p>
+                    <p className="caption-location">Mana village</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="photo-item">
+                <div className="photo-clip">
+                  <div className="divider"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                </div>
+                <div className="photo-frame">
+                  <img src="/images/hobbies/travel.jpg" alt="Being the main character" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Being the main character</p>
+                    <p className="caption-location">Pondicherry</p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Duplicate photos for continuous scrolling */}
+              <div className="photo-item">
+                <div className="photo-clip">
+                  <div className="divider"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                </div>
+                <div className="photo-frame">
+                  <img src="/images/hobbies/hiking.jpg" alt="Being Candid" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Being Candid</p>
+                    <p className="caption-location">Dang falls, Gujarat</p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Remaining duplicated items with vertical clips */}
+              <div className="photo-item">
+                <div className="photo-clip">
+                  <div className="divider"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
                 <div className="photo-clip"></div>
                 <div className="photo-frame">
                   <img src="/images/hobbies/photography.jpg" alt="Having an headache" />
@@ -452,77 +569,6 @@ const HomePage = () => {
                   <div className="photo-caption">
                     <p className="caption-title">Being the main character</p>
                     <p className="caption-location">Pondicherry</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Social media section like in the reference image */}
-              
-              {/* Duplicate photos for continuous scrolling */}
-              <div className="photo-item">
-                <div className="photo-clip clip-red"></div>
-                <div className="photo-frame">
-                  <img src="/images/hobbies/hiking.jpg" alt="Hiking in mountains" />
-                  <div className="photo-caption">
-                    <p className="caption-title">Conquering peaks</p>
-                    <p className="caption-location">Himalayas</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="photo-item">
-                <div className="photo-clip clip-blue"></div>
-                <div className="photo-frame">
-                  <img src="/images/hobbies/photography.jpg" alt="Taking photos" />
-                  <div className="photo-caption">
-                    <p className="caption-title">Capturing moments</p>
-                    <p className="caption-location">Western Ghats</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="photo-item">
-                <div className="photo-clip clip-red"></div>
-                <div className="photo-frame">
-                  <img src="/images/hobbies/beach.jpg" alt="Beach sunset" />
-                  <div className="photo-caption">
-                    <p className="caption-title">Beach sunsets</p>
-                    <p className="caption-location">Goa</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="photo-item">
-                <div className="photo-clip clip-blue"></div>
-                <div className="photo-frame">
-                  <img src="/images/hobbies/reading.jpg" alt="Reading books" />
-                  <div className="photo-caption">
-                    <p className="caption-title">Getting lost in books</p>
-                    <p className="caption-location">My happy place</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="photo-item">
-                <div className="photo-clip clip-red"></div>
-                <div className="photo-frame">
-                  <img src="/images/hobbies/cooking.jpg" alt="Cooking" />
-                  <div className="photo-caption">
-                    <p className="caption-title">Cooking experiments</p>
-                    <p className="caption-location">Home kitchen</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="photo-item">
-                <div className="photo-clip clip-blue"></div>
-                <div className="photo-frame">
-                  <img src="/images/hobbies/travel.jpg" alt="Traveling" />
-                  <div className="photo-caption">
-                    <p className="caption-title">Exploring new places</p>
-                    <p className="caption-location">Everywhere</p>
                   </div>
                 </div>
               </div>

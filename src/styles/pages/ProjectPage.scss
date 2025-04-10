@@ -260,7 +260,7 @@
 }
 
 .case-study-page {
-  padding-top: calc(#{$header-height} + 40px); // Added extra space for breadcrumb
+  padding-top: $header-height; // Removed extra space that was for breadcrumb
   min-height: calc(100vh - #{$header-height});
   display: flex;
   flex-direction: column;
@@ -286,7 +286,8 @@
   }
 }
 
-// Add breadcrumb styles
+// Remove the breadcrumb styles or comment them out
+/* 
 .breadcrumb-container {
   background-color: #f8f9fa;
   padding: $spacing-sm 0;
@@ -323,4 +324,5 @@
     color: $text-color;
     font-weight: 500;
   }
-} 
+}
+*/ 
