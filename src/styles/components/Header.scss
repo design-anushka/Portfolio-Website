@@ -212,7 +212,7 @@
 
 // Body spacing adjustment
 body {
-  padding-top: calc(#{$header-height} + 40px);
+  padding-top: calc(0px);
   
   @media (max-width: 768px) {
     padding-top: calc(#{$header-height} + 20px);
