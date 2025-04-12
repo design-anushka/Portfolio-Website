@@ -196,25 +196,27 @@ const HomePage = () => {
           
           <div className="projects-container">
             {featuredProjects.map((project) => (
-              <div className="project-card" key={project.id}>
-                <div className="project-content">
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="project-description">{project.description}</p>
-                  
-                  <div className="project-tags">
-                    {project.tags.map((tag, tagIndex) => (
-                      <span className="tag" key={tagIndex}>{tag}</span>
-                    ))}
+              <Link to={`/work/${project.slug}`} className="project-card-link" key={project.id}>
+                <div className="project-card">
+                  <div className="project-content">
+                    <h3 className="project-title">{project.title}</h3>
+                    <p className="project-description">{project.description}</p>
+                    
+                    <div className="project-tags">
+                      {project.tags.map((tag, tagIndex) => (
+                        <span className="tag" key={tagIndex}>{tag}</span>
+                      ))}
+                    </div>
+                    
+                    <div className="view-case-study">
+                      View Case Study <span className="arrow">→</span>
+                    </div>
                   </div>
-                  
-                  <Link to={`/work/${project.slug}`} className="view-case-study">
-                    View Case Study <span className="arrow">→</span>
-                  </Link>
+                  <div className="project-image">
+                    <img src={`/images/${project.id}.png`} alt={project.title} />
+                  </div>
                 </div>
-                <div className="project-image">
-                  <img src={`/images/${project.id}.png`} alt={project.title} />
-                </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
