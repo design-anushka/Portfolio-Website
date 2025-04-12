@@ -194,7 +194,7 @@ const Footer = () => {
             <div className="footer-bottom">
               <div className="footer-content">
                 <div className="footer-copyright">
-                  <p>© 2023 Anushka Singh. All rights reserved.</p>
+                  <p>© 2025 Anushka Singh. All rights reserved.</p>
                 </div>
                 <div className="footer-links">
                   <a 

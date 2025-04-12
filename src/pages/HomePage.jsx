@@ -212,7 +212,7 @@ const HomePage = () => {
                   </Link>
                 </div>
                 <div className="project-image">
-                  <img src={`/images/placeholder-${project.id}.jpg`} alt={project.title} />
+                  <img src={`/images/${project.id}.png`} alt={project.title} />
                 </div>
               </div>
             ))}
@@ -262,7 +262,7 @@ const HomePage = () => {
               
               <div className="about-image-container">
                 <div className="image-wrapper">
-                  <img src="/images/profile-photo.jpg" alt="Anushka Singh" className="about-image" />
+                  <img src="/images/profile-photo.jpeg" alt="Anushka Singh" className="about-image" />
                   <div className="image-accent"></div>
                 </div>
               </div>

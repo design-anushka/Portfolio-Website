@@ -26,7 +26,7 @@ const WorkPage = () => {
       id: 3,
       title: 'Corpcare',
       description: 'A corporate care platform helping businesses manage employee wellness.',
-      image: '/images/corpcare-case-study.png',
+      image: '/images/corpcare-case-study1.png',
       type: 'Product Design',
       tags: ['Product Design', 'Interaction Design'],
       slug: 'corpcare'
