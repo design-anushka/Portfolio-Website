@@ -101,10 +101,52 @@
     cursor: pointer;
     display: none;
     color: $text-color;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    z-index: 11;
     
-    svg {
-      width: 24px;
-      height: 24px;
+    // Hamburger bars
+    .hamburger-bar {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: $primary-color;
+      position: absolute;
+      left: 0;
+      transition: all 0.3s ease;
+      
+      &:nth-child(1) {
+        top: 0;
+      }
+      
+      &:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      
+      &:nth-child(3) {
+        bottom: 0;
+      }
+    }
+    
+    // Animated X when active
+    &.active {
+      .hamburger-bar {
+        &:nth-child(1) {
+          top: 50%;
+          transform: translateY(-50%) rotate(45deg);
+        }
+        
+        &:nth-child(2) {
+          opacity: 0;
+        }
+        
+        &:nth-child(3) {
+          bottom: 50%;
+          transform: translateY(50%) rotate(-45deg);
+        }
+      }
     }
     
     @media (max-width: 768px) {
@@ -121,22 +163,42 @@
     width: 90%;
     top: 10px;
     padding: 10px 15px;
+    z-index: 10;
+    
+    .header-content {
+      position: relative;
+    }
+    
+    .header-right {
+      position: static;
+    }
+    
+    // Position the mobile menu toggle at the right
+    .mobile-menu-toggle {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
     
     .nav {
       position: absolute;
-      top: 100%;
+      top: calc(100% + 10px); // Move the dropdown 10px lower
       left: 0;
       width: 100%;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-      border-radius: 0 0 10px 10px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 10px; // Round all corners
       padding: 20px 0;
       display: none;
-      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      z-index: 5;
       
       &.open {
         display: block;
+        animation: fadeInDown 0.3s ease forwards;
       }
       
       .nav-list {
@@ -145,6 +207,44 @@
         
         li {
           margin: 10px 0;
+          
+          a {
+            font-size: 18px; // Slightly larger text for mobile
+            display: block;
+            padding: 8px 20px;
+          }
+        }
+      }
+      
+      // Separator before resume button
+      &.open::after {
+        content: '';
+        display: block;
+        width: 50px;
+        height: 2px;
+        background-color: rgba($text-color, 0.1);
+        margin: $spacing-md auto;
+      }
+      
+      // Resume button in mobile dropdown
+      .resume-link-mobile {
+        display: flex;
+        justify-content: center;
+        margin-top: $spacing-lg;
+        margin-bottom: $spacing-lg;
+        
+        a {
+          padding: $spacing-sm $spacing-xl;
+          background-color: $primary-color;
+          color: white;
+          border-radius: 6px;
+          text-decoration: none;
+          font-weight: 600;
+          transition: all $transition-fast;
+          
+          &:hover {
+            background-color: darken($primary-color, 10%);
+          }
         }
       }
     }
@@ -215,13 +315,26 @@ body {
   padding-top: calc(0px);
   
   @media (max-width: 768px) {
-    padding-top: calc(#{$header-height} + 20px);
+    padding-top: calc(0px);
   }
 }
 
 // Handle mobile menu open state
 body.menu-open {
   overflow: hidden;
+  
+  &::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 4;
+  }
 }
 
 // Add this to your existing styles but don't apply it yet
@@ -235,5 +348,79 @@ body.menu-open {
 @media (max-width: 576px) {
   .logo .status-indicator .status-text {
     display: none; // Hide text on very small screens
+  }
+}
+
+// Dropdown animation
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Fix the resume button duplication issue
+.resume-link-mobile {
+  display: none; // Hide by default on all screen sizes
+  
+  @media (max-width: 768px) {
+    &.open {
+      display: flex; // Only display in mobile view when menu is open
+    }
+  }
+}
+
+// Keep the existing desktop resume button visible only on desktop
+.resume-cta {
+  display: inline-block; // Show on desktop
+  padding: $spacing-sm $spacing-lg;
+  background-color: $primary-color;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: $font-size-sm;
+  transition: all $transition-fast;
+  
+  &:hover {
+    background-color: darken($primary-color, 10%);
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: $breakpoint-md) {
+    display: none; // Hide on mobile
+  }
+}
+
+// Mobile nav adjustments
+@media (max-width: 768px) {
+  .nav {
+    // Other styles remain the same
+    
+    // Style for the mobile resume link
+    .resume-link-mobile {
+      display: flex; // Show in mobile menu
+      justify-content: center;
+      margin-top: $spacing-lg;
+      margin-bottom: $spacing-lg;
+      
+      a {
+        padding: $spacing-sm $spacing-xl;
+        background-color: $primary-color;
+        color: white;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all $transition-fast;
+        
+        &:hover {
+          background-color: darken($primary-color, 10%);
+        }
+      }
+    }
   }
 } 

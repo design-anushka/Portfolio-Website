@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import '../styles/components/Header.scss'
 
@@ -7,7 +7,8 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
   const isHomePage = location.pathname === '/'
-
+  const headerRef = useRef(null)
+  
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 10
@@ -28,8 +29,20 @@ const Header = () => {
       document.body.classList.remove('menu-open')
     }
 
+    // Add click outside listener when menu is open
+    const handleClickOutside = (event) => {
+      if (headerRef.current && !headerRef.current.contains(event.target)) {
+        setMenuOpen(false)
+      }
+    }
+    
+    if (menuOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+    
     return () => {
       document.body.classList.remove('menu-open')
+      document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [menuOpen])
 
@@ -59,7 +72,7 @@ const Header = () => {
   }
 
   return (
-    <header className={`header ${scrolled ? 'scrolled' : ''}`}>
+    <header className={`header ${scrolled ? 'scrolled' : ''}`} ref={headerRef}>
       <div className="container">
         <div className="header-content">
           {isHomePage ? (
@@ -78,9 +91,9 @@ const Header = () => {
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M3 12h18M3 6h18M3 18h18" />
-            </svg>
+            <span className="hamburger-bar"></span>
+            <span className="hamburger-bar"></span>
+            <span className="hamburger-bar"></span>
           </button>
           
           {/* Wrap nav and resume in a container */}
@@ -106,6 +119,17 @@ const Header = () => {
                   }}>Contact</a>
                 </li>
               </ul>
+              
+              {/* Add resume link to mobile menu */}
+              <div className="resume-link-mobile">
+                <a 
+                  href="/Anushka Singh_UX Manager_Resume.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  Resume
+                </a>
+              </div>
             </nav>
             
             <a 
