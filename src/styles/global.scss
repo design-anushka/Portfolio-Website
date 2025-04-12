@@ -1,13 +1,13 @@
-// Add custom cursor styles
+// Update custom cursor styles
 // First, import the magic wand cursor image in your global styles
 @import 'variables';
 
-// Custom cursor styles
-.magic-cursor {
-  cursor: url('/images/cursors/cursor.png') 10 5, auto !important;
-}
+// Remove or comment out the custom cursor styles
+// .magic-cursor {
+//   cursor: url('/images/cursors/cursor.png') 10 5, auto !important;
+// }
 
-// Apply to all interactive elements
+// Apply to all interactive elements - change to just add hover styles instead of custom cursor
 a, 
 button, 
 .cta-button, 
@@ -18,5 +18,25 @@ button,
 .process-card,
 .hero-title-wrapper,
 .contact-option {
-  @extend .magic-cursor;
+  // @extend .magic-cursor;
+  cursor: pointer; // Use standard pointer cursor
+  transition: all 0.3s ease;
+} 
+
+// Make all text unselectable
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+// Keep text selectable in specific elements where it might be needed
+input, 
+textarea, 
+[contenteditable="true"] {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 } 

@@ -8,58 +8,72 @@ const CursorFollower = () => {
   const [linkHovered, setLinkHovered] = useState(false)
 
   useEffect(() => {
+    // Add a small delay for initial positioning to prevent weird jumps
+    const timer = setTimeout(() => {
+      setHidden(false);
+    }, 300);
+    
     const handleMouseMove = (e) => {
-      setPosition({ x: e.clientX, y: e.clientY })
-      
-      if (hidden) setHidden(false)
+      // Use requestAnimationFrame for smoother updates
+      requestAnimationFrame(() => {
+        setPosition({ x: e.clientX, y: e.clientY });
+      });
     }
     
     const handleMouseLeave = () => {
-      setHidden(true)
+      setHidden(true);
     }
     
     const handleMouseEnter = () => {
-      setHidden(false)
+      setHidden(false);
     }
     
     const handleMouseDown = () => {
-      setClicked(true)
+      setClicked(true);
     }
     
     const handleMouseUp = () => {
-      setClicked(false)
+      setClicked(false);
     }
     
     const handleLinkHoverEvents = () => {
-      const links = document.querySelectorAll('a, button')
+      const interactiveElements = document.querySelectorAll('a, button, .cta-button, .project-card, .testimonial-card');
       
-      links.forEach(link => {
-        link.addEventListener('mouseenter', () => {
-          setLinkHovered(true)
-        })
+      interactiveElements.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+          setLinkHovered(true);
+        });
         
-        link.addEventListener('mouseleave', () => {
-          setLinkHovered(false)
-        })
-      })
+        element.addEventListener('mouseleave', () => {
+          setLinkHovered(false);
+        });
+      });
     }
     
-    document.addEventListener('mousemove', handleMouseMove)
-    document.addEventListener('mouseleave', handleMouseLeave)
-    document.addEventListener('mouseenter', handleMouseEnter)
-    document.addEventListener('mousedown', handleMouseDown)
-    document.addEventListener('mouseup', handleMouseUp)
+    // Hide default cursor
+    document.body.style.cursor = 'none';
     
-    handleLinkHoverEvents()
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseleave', handleMouseLeave);
+    document.addEventListener('mouseenter', handleMouseEnter);
+    document.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mouseup', handleMouseUp);
+    
+    handleLinkHoverEvents();
     
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove)
-      document.removeEventListener('mouseleave', handleMouseLeave)
-      document.removeEventListener('mouseenter', handleMouseEnter)
-      document.removeEventListener('mousedown', handleMouseDown)
-      document.removeEventListener('mouseup', handleMouseUp)
+      // Restore default cursor
+      document.body.style.cursor = 'auto';
+      
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener('mouseenter', handleMouseEnter);
+      document.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('mouseup', handleMouseUp);
+      
+      clearTimeout(timer);
     }
-  }, [hidden])
+  }, []);
 
   return (
     <div 

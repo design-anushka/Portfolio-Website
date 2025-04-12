@@ -80,6 +80,7 @@ const HomePage = () => {
   ]
 
   const PhotoGalleryRef = useRef(null);
+  const ctaButtonRef = useRef(null);
 
   useEffect(() => {
     const slider = PhotoGalleryRef.current;
@@ -150,6 +151,52 @@ const HomePage = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const button = ctaButtonRef.current;
+    if (!button) return;
+    
+    const handleMouseMove = (e) => {
+      const rect = button.getBoundingClientRect();
+      
+      // Get mouse position relative to the button
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+      
+      // Calculate position relative to button center
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      // Calculate offset from center
+      const offsetX = (mouseX - centerX) / centerX;
+      const offsetY = (mouseY - centerY) / centerY;
+      
+      // Apply a more pronounced shadow effect
+      const shadowX = -offsetX * 15;
+      const shadowY = -offsetY * 15;
+      const blur = 20;
+      
+      // Direct shadow manipulation with specific colors (no variables)
+      button.style.boxShadow = `
+        0 4px 10px rgba(0, 0, 0, 0.1),
+        ${shadowX}px ${shadowY}px ${blur}px rgba(67, 97, 238, 0.5),
+        ${-shadowX}px ${-shadowY}px ${blur}px rgba(124, 58, 237, 0.5)
+      `;
+    };
+    
+    const handleMouseLeave = () => {
+      // Reset to a subtle shadow when not hovering
+      button.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.1)';
+    };
+    
+    button.addEventListener('mousemove', handleMouseMove);
+    button.addEventListener('mouseleave', handleMouseLeave);
+    
+    return () => {
+      button.removeEventListener('mousemove', handleMouseMove);
+      button.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, []);
+
   return (
     <div className="home-page">
       {/* Hero Section with updated CTA and non-highlighted Immediate Joiner */}
@@ -171,10 +218,15 @@ const HomePage = () => {
             <div className="hero-actions-wrapper">
               <div className="hero-actions">
                 <div className="hero-cta">
-                  <a href="#work" className="cta-button" onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById('work').scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
-                  }}>
+                  <a 
+                    href="#work" 
+                    className="cta-button" 
+                    ref={ctaButtonRef}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById('work').scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+                    }}
+                  >
                     Explore my work <span className="button-arrow">→</span>
                   </a>
                 </div>
