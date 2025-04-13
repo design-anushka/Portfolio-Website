@@ -352,7 +352,7 @@ const HomePage = () => {
               
               <div className="about-image-container">
                 <div className="image-wrapper" style={isDesktop ? {padding: "20%"} : {}}>
-                  <img src="/images/profile-photo.jpeg" alt="Anushka Singh" className="about-image" />
+                  <img src="/images/profile-photo2.jpeg" alt="Anushka Singh" className="about-image" />
                   <div className="image-accent"></div>
                 </div>
               </div>
