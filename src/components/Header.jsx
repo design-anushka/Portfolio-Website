@@ -123,7 +123,7 @@ const Header = () => {
               {/* Add resume link to mobile menu */}
               <div className="resume-link-mobile">
                 <a 
-                  href="/Anushka Singh_UX Manager_Resume.pdf" 
+                  href="/images/Anushka_UIUX_Resume.pdf" 
                   target="_blank" 
                   rel="noopener noreferrer"
                 >
@@ -133,7 +133,7 @@ const Header = () => {
             </nav>
             
             <a 
-              href="/Anushka Singh_UX Manager_Resume.pdf" 
+              href="/images/Anushka_UIUX_Resume.pdf" 
               target="_blank" 
               rel="noopener noreferrer"
               className="resume-cta"

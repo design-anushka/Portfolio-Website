@@ -27,4 +27,21 @@
 
 main {
   flex: 1;
+}
+
+/* Add this at the end of the file to override any custom cursor styles */
+body, a, button, .interactive-element, .cta-button, .project-card, .testimonial-card {
+  cursor: auto !important;
+}
+
+a, button, .interactive-element, .cta-button {
+  cursor: pointer !important;
+}
+
+.photo-gallery-track {
+  cursor: auto !important;
+}
+
+.photo-gallery-track.active {
+  cursor: grabbing !important;
 } 

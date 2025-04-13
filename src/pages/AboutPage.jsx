@@ -38,7 +38,7 @@ const AboutPage = () => {
                 When I'm not designing, you can find me reading design books, exploring new coffee shops, or hiking in nature.
               </p>
               <div className="about-cta">
-                <a href="/Anushka Singh_UX Manager_Resume.pdf" target="_blank" rel="noopener noreferrer" className="cta-button">
+                <a href="/images/Anushka_UIUX_Resume.pdf" target="_blank" rel="noopener noreferrer" className="cta-button">
                   Download Resume
                 </a>
               </div>

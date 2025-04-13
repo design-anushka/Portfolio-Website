@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import '../styles/pages/HomePage.scss'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const HomePage = () => {
   // Featured projects data
@@ -81,6 +81,26 @@ const HomePage = () => {
 
   const PhotoGalleryRef = useRef(null);
   const ctaButtonRef = useRef(null);
+
+  // Add a useEffect at the beginning of your component to determine screen size
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    // Function to check if screen is desktop size
+    const checkScreenSize = () => {
+      const mediaQuery = window.matchMedia('(min-width: 1024px)'); // 1024px is typically desktop breakpoint
+      setIsDesktop(mediaQuery.matches);
+    };
+    
+    // Check on component mount
+    checkScreenSize();
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', checkScreenSize);
+    
+    // Clean up
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   useEffect(() => {
     const slider = PhotoGalleryRef.current;
@@ -274,7 +294,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* About Me Section - Enhanced design with two CTAs */}
+      {/* About Me Section */}
       <section className="about-me-section section" id="about">
         <div className="container">
           <h2 className="section-title">Little About Me</h2>
@@ -282,12 +302,12 @@ const HomePage = () => {
           <div className="about-card">
             <div className="about-content">
               <div className="about-text-container">
-                <p className="about-text">
-                  I started my career in QA after completing my B.Tech in CSE, gaining a solid foundation in how products function, from user flows to edge cases. This phase sharpened my analytical thinking and eye for detail—but it also sparked a deeper curiosity about user behaviour and experience.
+                {/* <p className="about-text">
+                  After completing my B.Tech in CSE, I began in QA, developing a strong foundation in product functionality, user flows, and edge cases. This sharpened my analytical skills and sparked a deeper interest in user behaviour and experience.
                 </p>
                 
                 <p className="about-text">
-                  Over the past 4.6 years, I've purposefully transitioned into UX design, bringing with me empathy, structure, and a problem-solving mindset. I now work across UX research, information architecture, wireframing, and strategy—crafting intuitive, user-first experiences that simplify complexity and create lasting impact.
+                  Over the past 5 years, I've transitioned into UX design, applying empathy and problem-solving across research, information architecture, wireframing, and strategy to create intuitive experiences that simplify complexity.
                 </p>
                 
                 <p className="about-text">
@@ -295,10 +315,26 @@ const HomePage = () => {
                   <br />– Solving real-world problems through thoughtful design
                   <br />– Creating seamless journeys backed by research
                   <br />– Bringing clarity to complexity with clean workflows
+                </p> */}
+
+                <p className="about-text">
+                  After my B.Tech in CSE, I began in QA, building a strong foundation in product functionality and user flows. It sharpened my analytical skills and sparked a passion for user experience.
                 </p>
+
+                <p className="about-text">
+                  For the past 5 years, I've worked in UX design—applying empathy and problem-solving across research, IA, wireframing, and strategy to craft intuitive, user-first solutions.
+                </p>
+
+                <p className="about-text">
+                  What drives me?
+                  <br />– Solving real problems through design
+                  <br />– Research-backed, seamless journeys
+                  <br />– Clarity through clean, simple workflows
+                </p>
+
                 
                 <div className="about-cta-group">
-                  <a href="/Anushka Singh_UX Manager_Resume.pdf" target="_blank" rel="noopener noreferrer" className="cta-button primary">
+                  <a href="/images/Anushka_UIUX_Resume.pdf" target="_blank" rel="noopener noreferrer" className="cta-button primary">
                     View my Resume <span className="arrow">→</span>
                   </a>
                   <a 
@@ -315,7 +351,7 @@ const HomePage = () => {
               </div>
               
               <div className="about-image-container">
-                <div className="image-wrapper">
+                <div className="image-wrapper" style={isDesktop ? {padding: "20%"} : {}}>
                   <img src="/images/profile-photo.jpeg" alt="Anushka Singh" className="about-image" />
                   <div className="image-accent"></div>
                 </div>
@@ -326,7 +362,7 @@ const HomePage = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="testimonials-section section">
+      {/* <section className="testimonials-section section">
         <div className="container">
           <h2 className="section-title">Few Kind Words From My Collaborators</h2>
           
@@ -356,7 +392,7 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Design Process Section with updated styles */}
       <section className="process-section section" id="process">
@@ -403,56 +439,42 @@ const HomePage = () => {
           
           <div className="tools-container">
             <div className="tools-track">
-              <div className="tool-chip">Slide Decks</div>
+              <div className="tool-chip">Figma</div>
+              <div className="tool-chip">UX Design</div>
               <div className="tool-chip">Usability Testing</div>
-              <div className="tool-chip">
-                <img src="/images/tools/notion.svg" alt="Notion" />
-                Notion
-              </div>
-              <div className="tool-chip">UI Design</div>
-              <div className="tool-chip">UX Strategy</div>
-              <div className="tool-chip">
-                <img src="/images/tools/figma.svg" alt="Figma" />
-                Figma
-              </div>
-              <div className="tool-chip">User Research</div>
-              <div className="tool-chip">
-                <img src="/images/tools/framer.svg" alt="Framer" />
-                Framer
-              </div>
+              <div className="tool-chip">Mobile App</div>
+              <div className="tool-chip">Heuristic Evaluation</div>
+              <div className="tool-chip">Information Architecture</div>
+              <div className="tool-chip">Card Sorting</div>
+              <div className="tool-chip">Journey Mapping</div>
+              <div className="tool-chip">Prototyping</div>
+              <div className="tool-chip">Design Strategy</div>
               
               {/* Duplicate tools for infinite scrolling */}
-              <div className="tool-chip">Slide Decks</div>
+              <div className="tool-chip">Figma</div>
+              <div className="tool-chip">UX Design</div>
               <div className="tool-chip">Usability Testing</div>
-              <div className="tool-chip">
-                <img src="/images/tools/notion.svg" alt="Notion" />
-                Notion
-              </div>
-              <div className="tool-chip">UI Design</div>
-              <div className="tool-chip">UX Strategy</div>
-              <div className="tool-chip">
-                <img src="/images/tools/figma.svg" alt="Figma" />
-                Figma
-              </div>
-              <div className="tool-chip">User Research</div>
-              <div className="tool-chip">
-                <img src="/images/tools/framer.svg" alt="Framer" />
-                Framer
-              </div>
+              <div className="tool-chip">Mobile App</div>
+              <div className="tool-chip">Heuristic Evaluation</div>
+              <div className="tool-chip">Information Architecture</div>
+              <div className="tool-chip">Card Sorting</div>
+              <div className="tool-chip">Journey Mapping</div>
+              <div className="tool-chip">Prototyping</div>
+              <div className="tool-chip">Design Strategy</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* When I'm Not... Section - Updated with vertical wooden clothespin clips */}
-      <section className="when-im-not-section section">
+      {/* <section className="when-im-not-section section">
         <div className="container">
-          <h2 className="section-title">When I'm Not...</h2>
+          <h2 className="section-title">When I'm not designing</h2>
           
           <div className="photo-gallery-container">
             <div className="photo-gallery-track">
               {/* First set of photos with updated vertical clips */}
-              <div className="photo-item">
+              {/* <div className="photo-item">
                 <div className="photo-clip">
                   <div className="divider"></div>
                   <div className="grain"></div>
@@ -555,7 +577,7 @@ const HomePage = () => {
               </div>
               
               {/* Duplicate photos for continuous scrolling */}
-              <div className="photo-item">
+              {/* <div className="photo-item">
                 <div className="photo-clip">
                   <div className="divider"></div>
                   <div className="grain"></div>
@@ -574,7 +596,7 @@ const HomePage = () => {
               
               {/* Remaining duplicated items with vertical clips */}
                            {/* Remaining duplicated items with vertical clips */}
-                           <div className="photo-item">
+                           {/* <div className="photo-item">
                 <div className="photo-clip">
                   <div className="divider"></div>
                   <div className="grain"></div>
@@ -625,20 +647,20 @@ const HomePage = () => {
                 </div>
               </div>
               
-              <div className="photo-item">
-                <div className="photo-clip"></div>
+              <div className="photo-item"> */}
+                {/* <div className="photo-clip"></div>
                 <div className="photo-frame">
                   <img src="/images/hobbies/travel.jpg" alt="Being the main character" />
                   <div className="photo-caption">
                     <p className="caption-title">Being the main character</p>
                     <p className="caption-location">Pondicherry</p>
                   </div>
-                </div>
-              </div>
-            </div>
+                </div> */}
+              {/* </div> */}
+            {/*</div>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   )
 }
