@@ -1040,7 +1040,7 @@
   }
 }
 
-// Enhanced Testimonials Section with the requested features
+// Updated testimonial section with better card dimensions and spacing
 .testimonials-section {
   // padding-top: $spacing-3xl;
   // padding-bottom: $spacing-3xl;
@@ -1054,7 +1054,7 @@
     width: 100%;
     overflow: hidden;
     position: relative;
-    // padding: $spacing-md 0;
+    padding: $spacing-md 0 $spacing-2xl; // Increased bottom padding to prevent cutoff
     
     &::after {
       content: '';
@@ -1084,18 +1084,18 @@
   .testimonials-track {
     display: flex;
     gap: $spacing-lg;
-    animation: infiniteScroll 40s linear infinite;
+    animation: testimonialSlide 60s linear infinite;
     width: max-content;
-    padding: 0 2rem $spacing-lg;
+    padding: $spacing-md 2rem $spacing-xl;
   }
   
-  // Updated infinite scroll animation
-  @keyframes infiniteScroll {
+  // Update animation for truly continuous rotation
+  @keyframes testimonialSlide {
     0% {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-350px * 5 - #{$spacing-lg} * 5));
+      transform: translateX(calc(-420px * 6 - #{$spacing-lg} * 6)); // Exactly the width of all original cards
     }
   }
   
@@ -1121,18 +1121,20 @@
   
   .testimonial-card {
     flex: 0 0 auto;
-    width: 350px;
-    height: 300px;
+    width: 420px; // Increased from 380px to 420px for more content space
+    min-height: 320px; // Changed to min-height to allow for content growth
+    height: auto; // Allow card to grow based on content
     background-color: white;
     border-radius: 16px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    padding: $spacing-xl;
+    padding: $spacing-xl; // Increased padding all around
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     transition: all $transition-normal;
     border: 1px solid rgba(0, 0, 0, 0.05);
-    cursor: url('/images/cursors/magic-wand.png'), auto;
+    cursor: pointer;
+    margin: $spacing-sm 0; // Add vertical margin to prevent cutoff
     
     &:hover {
       animation: pulseGlow 0.8s ease-out forwards;
@@ -1149,6 +1151,12 @@
       line-height: 1.6;
       margin-bottom: $spacing-lg;
       position: relative;
+      max-height: 170px; // Limit height to prevent overflow
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 7; // Show approximately 7 lines
+      -webkit-box-orient: vertical;
       
       &::before {
         content: '"';
@@ -1159,6 +1167,23 @@
         left: -10px;
         color: rgba(0, 0, 0, 0.05);
         font-family: Georgia, serif;
+      }
+      
+      .read-more-link {
+        display: inline-block;
+        color: $dark-gray;
+        font-weight: 500;
+        margin-left: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 0;
+        font-size: $font-size-sm;
+        text-decoration: underline;
+        
+        &:hover {
+          color: $accent-color;
+        }
       }
     }
     
@@ -1186,17 +1211,28 @@
       align-items: center;
       gap: $spacing-md;
       
-      .author-avatar {
-        width: 50px;
-        height: 50px;
+      .linkedin-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
-        overflow: hidden;
+        background-color: rgba(0, 119, 181, 0.1);
+        transition: all $transition-normal;
         flex-shrink: 0;
         
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
+        &:hover {
+          background-color: rgba(0, 119, 181, 0.2);
+          transform: translateY(-2px);
+        }
+        
+        svg {
+          transition: transform $transition-normal;
+        }
+        
+        &:hover svg {
+          transform: scale(1.1);
         }
       }
       
@@ -1235,6 +1271,177 @@
   
   .testimonial-card:nth-child(even) {
     border-top: 4px solid $accent-color;
+  }
+}
+
+// Testimonial popup styles
+.testimonial-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: $spacing-2xl;
+  
+  .popup-content {
+    background-color: white;
+    border-radius: 16px;
+    max-width: 700px; // Increased from 600px
+    width: 90%;
+    max-height: 90vh; // Increased from 80vh
+    padding: $spacing-2xl;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border-top: 4px solid $accent-color;
+    display: flex;
+    flex-direction: column;
+    
+    // For the longest testimonials, allow scrolling but make it smooth
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: $accent-color rgba($accent-color, 0.1);
+    
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: rgba($accent-color, 0.1);
+      border-radius: 4px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background-color: $accent-color;
+      border-radius: 4px;
+    }
+  }
+  
+  .close-popup {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    color: $dark-gray;
+    cursor: pointer;
+    z-index: 10; // Ensure it's above other content
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all $transition-normal;
+    
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+      color: $primary-color;
+    }
+  }
+  
+  .popup-testimonial {
+    margin-bottom: $spacing-xl;
+    
+    p {
+      font-size: $font-size-md;
+      line-height: 1.7;
+      margin-bottom: $spacing-md;
+      
+      &:first-of-type {
+        position: relative;
+        
+        &::before {
+          content: '"';
+          font-size: 4rem;
+          line-height: 0;
+          position: absolute;
+          top: 15px;
+          left: -10px;
+          color: rgba(0, 0, 0, 0.05);
+          font-family: Georgia, serif;
+        }
+      }
+      
+      &:last-of-type {
+        position: relative;
+        
+        &::after {
+          content: '"';
+          font-size: 4rem;
+          line-height: 0;
+          position: absolute;
+          bottom: -20px;
+          right: -10px;
+          color: rgba(0, 0, 0, 0.05);
+          font-family: Georgia, serif;
+        }
+      }
+    }
+  }
+  
+  .popup-author {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    padding-top: $spacing-md;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: auto; // Push to bottom of container
+    
+    .linkedin-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(0, 119, 181, 0.1);
+      transition: all $transition-normal;
+      flex-shrink: 0;
+      
+      &:hover {
+        background-color: rgba(0, 119, 181, 0.2);
+      }
+      
+      svg {
+        transition: transform $transition-normal;
+      }
+      
+      &:hover svg {
+        transform: scale(1.1);
+      }
+    }
+    
+    .author-info {
+      flex-grow: 1;
+    }
+    
+    .author-name {
+      font-weight: 600;
+      margin-bottom: 2px;
+      font-size: $font-size-lg;
+    }
+    
+    .author-role {
+      font-size: $font-size-sm;
+      color: $dark-gray;
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Media query to adjust popup size on smaller screens
+@media (max-width: $breakpoint-md) {
+  .testimonial-popup {
+    .popup-content {
+      padding: $spacing-xl;
+    }
   }
 }
 
@@ -1376,6 +1583,7 @@
   
   .about-image-container {
     height: 100%;
+    background-color: #ABA1FA; // Fill the right space with this color
     
     .image-wrapper {
       position: relative;

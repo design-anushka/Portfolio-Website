@@ -35,49 +35,72 @@ const HomePage = () => {
     }
   ]
 
-  // Testimonials data
+  // Add state for tracking which testimonial popup is open
+  const [openPopupId, setOpenPopupId] = useState(null);
+  
+  // Updated testimonials data with the new content
   const testimonials = [
     {
       id: 1,
-      text: "Working with Anushka was an absolute pleasure. Her design sensibilities are unmatched!",
-      author: "John Doe",
-      role: "Product Manager, XYZ Company",
-      tags: ["Innovative", "Detail-oriented", "Strategic"],
-      avatar: "/images/avatars/avatar-1.png"
+      shortText: "Working with Anushka was an absolute delight. She has excellent communication skills and never hesitates to speak up when an opinion is needed. She's confident in her commitments and consistently meets deadlines.",
+      fullText: "Working with Anushka was an absolute delight. She has excellent communication skills and never hesitates to speak up when an opinion is needed. She's confident in her commitments and consistently meets deadlines.\n\nAnushka has a keen eye for detail—she notices the smallest things that can significantly enhance a product. She's a true team player, someone who brings the whole team together and makes the work environment enjoyable and collaborative.\n\nIt was truly a pleasure working with her. Whether professionally or personally, Anushka is simply amazing!",
+      author: "Sachi Jain",
+      role: "Senior Product Designer, Onething Design",
+      tags: ["Detail-oriented", "Problem-solver", "Deadline wizard"],
+      avatar: "/images/avatars/avatar-1.png",
+      linkedin: "https://www.linkedin.com/in/sachi-jain-996b32193/"
     },
     {
       id: 2,
-      text: "Anushka's ability to understand user needs and translate them into beautiful designs is remarkable.",
-      author: "Jane Smith",
-      role: "CEO, ABC Startup",
-      tags: ["Empathetic", "Creative", "Analytical"],
-      avatar: "/images/avatars/avatar-2.png"
+      shortText: "I worked with Anushka for two years on a bunch of projects, and she was always my go-to for anything UX. She just gets it- super easy to talk to, makes things easy to understand, and is always up for solving tricky problems together. Loved collaborating with her!",
+      fullText: "I worked with Anushka for two years on a bunch of projects, and she was always my go-to for anything UX. She just gets it- super easy to talk to, makes things easy to understand, and is always up for solving tricky problems together. Loved collaborating with her!",
+      author: "Vaishnavi Pawar",
+      role: "Senior UI/UX Designer, Fluidesigns",
+      tags: ["Visionary", "Problem-solver", "Passionate"],
+      avatar: "/images/avatars/avatar-2.png",
+      linkedin: "https://www.linkedin.com/in/vaishnavieee/"
     },
     {
       id: 3,
-      text: "One of the most talented designers I've worked with. Her attention to detail is impressive.",
-      author: "Michael Johnson",
-      role: "Design Lead, Tech Corp",
-      tags: ["Talented", "Visionary", "Collaborative"],
-      avatar: "/images/avatars/avatar-3.png"
+      shortText: "To start with, you carry top tier UX skills. You have the ability to manage multiple projects simultaneously. You have excellent communication skills.",
+      fullText: "To start with, you carry top tier UX skills. You have the ability to manage multiple projects simultaneously. You have excellent communication skills.",
+      author: "Sahil Shaikh",
+      role: "Product Designer, Chezuba",
+      tags: ["Detail-oriented", "Problem-solver", "Passionate"],
+      avatar: "/images/avatars/avatar-3.png",
+      linkedin: "https://www.linkedin.com/in/sahil-shaikh-054b0314a"
     },
     {
       id: 4,
-      text: "Anushka brought a fresh perspective to our project and delivered beyond our expectations.",
-      author: "Sarah Williams",
-      role: "Marketing Director, Brand Co",
-      tags: ["Innovative", "Reliable", "Insightful"],
-      avatar: "/images/avatars/avatar-4.png"
+      shortText: "I've had the pleasure of working with Anushka, and I can confidently say she's one of the most dedicated and collaborative UX designers and managers I've met. While her expertise lies in UX, what truly stands out is her constant curiosity and genuine interest in UI design.",
+      fullText: "I've had the pleasure of working with Anushka, and I can confidently say she's one of the most dedicated and collaborative UX designers and managers I've met. While her expertise lies in UX, what truly stands out is her constant curiosity and genuine interest in UI design. She's always asking questions, eager to understand different perspectives, and actively learning from the UI team. That openness to growth is something I really admire.\n\nAnushka is also a natural team player. She consistently goes the extra mile to keep the team connected and engaged—whether it's organizing team bonding activities or initiating knowledge-sharing sessions. She creates an environment where everyone feels heard and supported, and she always makes an effort to share what she's learned from her own project experiences while being equally eager to learn from others.\n\nHer leadership style is thoughtful, inclusive, and driven by a passion for building not just great products, but great teams. If you're looking for someone who brings both UX expertise and strong people skills to the table, Anushka is that person. I've learned a lot from working with her and I'm sure others will say the same.",
+      author: "Adesh Gaikwad",
+      role: "Senior UI Designer, Fluidesigns",
+      tags: ["Detail-oriented", "Thought leader", "Collaborative anchor"],
+      avatar: "/images/avatars/avatar-4.png",
+      linkedin: "https://www.linkedin.com/in/uiux-adesh-gaikwad"
     },
     {
       id: 5,
-      text: "Collaborative, innovative, and extremely skilled. Working with Anushka elevated our product.",
-      author: "David Brown",
-      role: "Founder, Innovation Labs",
-      tags: ["Skilled", "Adaptable", "Forward-thinking"],
-      avatar: "/images/avatars/avatar-5.png"
+      shortText: "Anushka always goes the extra mile and encourages everyone around her to do the same. She is a real driving force at work, someone whom you can reach out to for a fresh perspective on any design challenge. Her way of handling projects/teams has no match.",
+      fullText: "Anushka always goes the extra mile and encourages everyone around her to do the same. She is a real driving force at work, someone whom you can reach out to for a fresh perspective on any design challenge. Her way of handling projects/teams has no match.",
+      author: "Danish",
+      role: "Product Designer, Fluidesigns",
+      tags: ["Problem-solver", "Deadline wizard", "OG of the team"],
+      avatar: "/images/avatars/avatar-5.png",
+      linkedin: "https://www.linkedin.com/in/danish-shafi-mir/"
+    },
+    {
+      id: 6,
+      shortText: "I had a great experience working with Anushka in different types of projects be it Saas applications, websites, UX copy writing. She always use to keep the projects inline and meet all deadlines even after buffer works. It would be a no brainer to include Anushka in a big UX project.",
+      fullText: "I had a great experience working with Anushka in different types of projects be it Saas applications, websites, UX copy writing. She always use to keep the projects inline and meet all deadlines even after buffer works. It would be a no brainer to include Anushka in a big UX project.",
+      author: "Arjun Nair",
+      role: "Product designer, Fluidesigns",
+      tags: ["Team catalyst", "Problem-solver", "Deadline wizard"],
+      avatar: "/images/avatars/avatar-2.png",
+      linkedin: "https://www.linkedin.com/in/arjun-na1r"
     }
-  ]
+  ];
 
   const PhotoGalleryRef = useRef(null);
   const ctaButtonRef = useRef(null);
@@ -217,6 +240,128 @@ const HomePage = () => {
     };
   }, []);
 
+  // Add the testimonial popup close handler
+  const handleClosePopup = () => {
+    setOpenPopupId(null);
+  };
+
+  const TestimonialsSection = () => {
+    // First, make sure we have at least twice as many cards for proper looping
+    const duplicatedTestimonials = [...testimonials, ...testimonials];
+    
+    return (
+      <section className="testimonials-section section">
+        <div className="container">
+          <h2 className="section-title">Few Kind Words From My Collaborators</h2>
+          
+          <div className="testimonials-container">
+            <div className="testimonials-track">
+              {duplicatedTestimonials.map((testimonial, index) => (
+                <div className="testimonial-card" key={`testimonial-${testimonial.id}-${index}`}>
+                  <div className="testimonial-content">
+                    <p className="testimonial-text">
+                      {testimonial.shortText}
+                      {testimonial.fullText !== testimonial.shortText && (
+                        <button 
+                          className="read-more-link"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setOpenPopupId(testimonial.id);
+                          }}
+                        >
+                          Read more
+                        </button>
+                      )}
+                    </p>
+                    <div className="testimonial-tags">
+                      {testimonial.tags && testimonial.tags.map((tag, tagIndex) => (
+                        <span className="tag" key={tagIndex}>{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="testimonial-author">
+                    <a 
+                      href={testimonial.linkedin} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="linkedin-icon"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#0077B5">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                      </svg>
+                    </a>
+                    <div className="author-info">
+                      <p className="author-name">{testimonial.author}</p>
+                      <p className="author-role">{testimonial.role}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Testimonial Popup */}
+          {openPopupId && (
+            <div className="testimonial-popup">
+              <div className="popup-content">
+                <button 
+                  className="close-popup"
+                  onClick={handleClosePopup}
+                >
+                  ×
+                </button>
+                <div className="popup-testimonial">
+                  {testimonials.find(t => t.id === openPopupId)?.fullText.split('\n').map((paragraph, i) => (
+                    <p key={i}>{paragraph}</p>
+                  ))}
+                </div>
+                <div className="popup-author">
+                  <a 
+                    href={testimonials.find(t => t.id === openPopupId)?.linkedin} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="linkedin-icon"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#0077B5">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                  </a>
+                  <div className="author-info">
+                    <p className="author-name">{testimonials.find(t => t.id === openPopupId)?.author}</p>
+                    <p className="author-role">{testimonials.find(t => t.id === openPopupId)?.role}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  };
+
+  // Add this effect to ensure continuous, seamless rotation
+  useEffect(() => {
+    const trackElement = document.querySelector('.testimonials-track');
+    if (!trackElement) return;
+    
+    const handleAnimation = (e) => {
+      if (e.type === 'animationiteration') {
+        // When animation completes one iteration, reset position instantly
+        // This creates the illusion of infinite scrolling
+        trackElement.style.animation = 'none';
+        trackElement.offsetHeight; // Trigger reflow
+        trackElement.style.animation = 'testimonialSlide 60s linear infinite';
+      }
+    };
+    
+    trackElement.addEventListener('animationiteration', handleAnimation);
+    
+    return () => {
+      trackElement.removeEventListener('animationiteration', handleAnimation);
+    };
+  }, []);
+
   return (
     <div className="home-page">
       {/* Hero Section with updated CTA and non-highlighted Immediate Joiner */}
@@ -243,8 +388,8 @@ const HomePage = () => {
                     className="cta-button" 
                     ref={ctaButtonRef}
                     onClick={(e) => {
-                      e.preventDefault();
-                      document.getElementById('work').scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+                    e.preventDefault();
+                    document.getElementById('work').scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
                     }}
                   >
                     Explore my work <span className="button-arrow">→</span>
@@ -270,21 +415,21 @@ const HomePage = () => {
             {featuredProjects.map((project) => (
               <Link to={`/work/${project.slug}`} className="project-card-link" key={project.id}>
                 <div className="project-card">
-                  <div className="project-content">
-                    <h3 className="project-title">{project.title}</h3>
-                    <p className="project-description">{project.description}</p>
-                    
-                    <div className="project-tags">
-                      {project.tags.map((tag, tagIndex) => (
-                        <span className="tag" key={tagIndex}>{tag}</span>
-                      ))}
-                    </div>
-                    
-                    <div className="view-case-study">
-                      View Case Study <span className="arrow">→</span>
-                    </div>
+                <div className="project-content">
+                  <h3 className="project-title">{project.title}</h3>
+                  <p className="project-description">{project.description}</p>
+                  
+                  <div className="project-tags">
+                    {project.tags.map((tag, tagIndex) => (
+                      <span className="tag" key={tagIndex}>{tag}</span>
+                    ))}
                   </div>
-                  <div className="project-image">
+                  
+                    <div className="view-case-study">
+                    View Case Study <span className="arrow">→</span>
+                    </div>
+                </div>
+                <div className="project-image">
                     <img src={`/images/${project.id}.png`} alt={project.title} />
                   </div>
                 </div>
@@ -351,8 +496,8 @@ const HomePage = () => {
               </div>
               
               <div className="about-image-container">
-                <div className="image-wrapper" style={isDesktop ? {padding: "20%"} : {}}>
-                  <img src="/images/profile-photo.jpg" alt="Anushka Singh" className="about-image" />
+                <div className="image-wrapper" style={isDesktop ? {padding: "06%"} : {}}>
+                  <img src="/images/my photo.jpg" alt="Anushka Singh" className="about-image" />
                   <div className="image-accent"></div>
                 </div>
               </div>
@@ -362,37 +507,7 @@ const HomePage = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="testimonials-section section">
-        <div className="container">
-          <h2 className="section-title">Few Kind Words From My Collaborators</h2>
-          
-          <div className="testimonials-container">
-            <div className="testimonials-track">
-              {[...testimonials, ...testimonials].map((testimonial, index) => (
-                <div className="testimonial-card" key={`${testimonial.id}-${index}`}>
-                  <div className="testimonial-content">
-                    <p className="testimonial-text">{testimonial.text}</p>
-                    <div className="testimonial-tags">
-                      {testimonial.tags && testimonial.tags.map((tag, tagIndex) => (
-                        <span className="tag" key={tagIndex}>{tag}</span>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="testimonial-author">
-                    <div className="author-avatar">
-                      <img src={testimonial.avatar} alt={testimonial.author} />
-                    </div>
-                    <div className="author-info">
-                      <p className="author-name">{testimonial.author}</p>
-                      <p className="author-role">{testimonial.role}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <TestimonialsSection />
 
       {/* Design Process Section with updated styles */}
       <section className="process-section section" id="process">
