@@ -352,7 +352,7 @@ const HomePage = () => {
               
               <div className="about-image-container">
                 <div className="image-wrapper" style={isDesktop ? {padding: "20%"} : {}}>
-                  <img src="/images/profile-photo2.jpeg" alt="Anushka Singh" className="about-image" />
+                  <img src="/images/profile-photo.jpg" alt="Anushka Singh" className="about-image" />
                   <div className="image-accent"></div>
                 </div>
               </div>
@@ -362,7 +362,7 @@ const HomePage = () => {
       </section>
 
       {/* Testimonials Section */}
-      {/* <section className="testimonials-section section">
+      <section className="testimonials-section section">
         <div className="container">
           <h2 className="section-title">Few Kind Words From My Collaborators</h2>
           
@@ -392,7 +392,7 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* Design Process Section with updated styles */}
       <section className="process-section section" id="process">
