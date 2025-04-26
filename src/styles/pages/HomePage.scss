@@ -1054,68 +1054,85 @@
     width: 100%;
     overflow: hidden;
     position: relative;
-    padding: $spacing-md 0 $spacing-2xl; // Increased bottom padding to prevent cutoff
-    
-    &::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 0;
-      height: 100%;
-      width: 120px;
-      background: linear-gradient(to right, rgba($light-gray, 0), rgba($light-gray, 1));
-      z-index: 2;
-      pointer-events: none;
-    }
-    
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 120px;
-      background: linear-gradient(to left, rgba($light-gray, 0), rgba($light-gray, 1));
-      z-index: 2;
-      pointer-events: none;
-    }
+    padding: $spacing-md 0 $spacing-2xl;
+    margin: 0 auto;
+  }
+  
+  .testimonials-wrapper {
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
   }
   
   .testimonials-track {
     display: flex;
     gap: $spacing-lg;
-    animation: testimonialSlide 60s linear infinite;
+    animation: infiniteScroll 60s linear infinite;
     width: max-content;
     padding: $spacing-md 2rem $spacing-xl;
+    will-change: transform; // Optimize for animations
   }
   
-  // Update animation for truly continuous rotation
-  @keyframes testimonialSlide {
-    0% {
-      transform: translateX(0);
+  // Shadow overlays for fade effect
+  .testimonials-fade {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 120px;
+    z-index: 10;
+    pointer-events: none;
+    
+    &.testimonials-fade-left {
+      left: 0;
+      background: linear-gradient(to right, rgba($light-gray, 1), rgba($light-gray, 0));
     }
-    100% {
-      transform: translateX(calc(-420px * 6 - #{$spacing-lg} * 6)); // Exactly the width of all original cards
+    
+    &.testimonials-fade-right {
+      right: 0;
+      background: linear-gradient(to left, rgba($light-gray, 1), rgba($light-gray, 0));
     }
   }
   
-  // New pulse-glow animation for hover effect
-  @keyframes pulseGlow {
-    0% {
-      transform: scale(1);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  // Keep the scroll button styles
+  .scroll-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 50;
+    transition: all 0.3s ease;
+    
+    svg {
+      color: $dark-gray;
     }
-    40% {
-      transform: scale(1.03);
-      box-shadow: 0 12px 28px rgba(67, 97, 238, 0.15);
+    
+    &:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      
+      svg {
+        color: $primary-color;
+      }
     }
-    60% {
-      transform: scale(1.05);
-      box-shadow: 0 14px 30px rgba(67, 97, 238, 0.2);
+    
+    &:active {
+      transform: translateY(-50%) scale(0.95);
     }
-    100% {
-      transform: scale(1.04);
-      box-shadow: 0 12px 28px rgba(67, 97, 238, 0.18);
+    
+    &.scroll-left {
+      left: 20px;
+    }
+    
+    &.scroll-right {
+      right: 20px;
     }
   }
   
@@ -1136,9 +1153,17 @@
     cursor: pointer;
     margin: $spacing-sm 0; // Add vertical margin to prevent cutoff
     
+    // Default hover style (for accent/blue cards)
     &:hover {
-      animation: pulseGlow 0.8s ease-out forwards;
+      animation: accentPulseGlow 0.8s ease-out forwards;
       border-color: $accent-color;
+      z-index: 10;
+    }
+    
+    // Special hover style for primary/black cards
+    &.primary:hover {
+      animation: primaryPulseGlow 0.8s ease-out forwards;
+      border-color: $primary-color;
       z-index: 10;
     }
     
@@ -1901,5 +1926,44 @@
   }
   90% {
     transform: translateX(0);
+  }
+}
+
+// Define separate animations for different card types
+@keyframes accentPulseGlow {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+  40% {
+    transform: scale(1.03);
+    box-shadow: 0 12px 28px rgba(67, 97, 238, 0.15); // Blue shadow
+  }
+  60% {
+    transform: scale(1.05);
+    box-shadow: 0 14px 30px rgba(67, 97, 238, 0.2); // Blue shadow
+  }
+  100% {
+    transform: scale(1.04);
+    box-shadow: 0 12px 28px rgba(67, 97, 238, 0.18); // Blue shadow
+  }
+}
+
+@keyframes primaryPulseGlow {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+  40% {
+    transform: scale(1.03);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15); // Black shadow
+  }
+  60% {
+    transform: scale(1.05);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2); // Black shadow
+  }
+  100% {
+    transform: scale(1.04);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18); // Black shadow
   }
 } 

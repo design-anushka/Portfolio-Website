@@ -48,7 +48,8 @@ const HomePage = () => {
       role: "Senior Product Designer, Onething Design",
       tags: ["Detail-oriented", "Problem-solver", "Deadline wizard"],
       avatar: "/images/avatars/avatar-1.png",
-      linkedin: "https://www.linkedin.com/in/sachi-jain-996b32193/"
+      linkedin: "https://www.linkedin.com/in/sachi-jain-996b32193/",
+      type: "primary"
     },
     {
       id: 2,
@@ -58,7 +59,8 @@ const HomePage = () => {
       role: "Senior UI/UX Designer, Fluidesigns",
       tags: ["Visionary", "Problem-solver", "Passionate"],
       avatar: "/images/avatars/avatar-2.png",
-      linkedin: "https://www.linkedin.com/in/vaishnavieee/"
+      linkedin: "https://www.linkedin.com/in/vaishnavieee/",
+      type: "accent"
     },
     {
       id: 3,
@@ -68,7 +70,8 @@ const HomePage = () => {
       role: "Product Designer, Chezuba",
       tags: ["Detail-oriented", "Problem-solver", "Passionate"],
       avatar: "/images/avatars/avatar-3.png",
-      linkedin: "https://www.linkedin.com/in/sahil-shaikh-054b0314a"
+      linkedin: "https://www.linkedin.com/in/sahil-shaikh-054b0314a",
+      type: "accent"
     },
     {
       id: 4,
@@ -78,7 +81,8 @@ const HomePage = () => {
       role: "Senior UI Designer, Fluidesigns",
       tags: ["Detail-oriented", "Thought leader", "Collaborative anchor"],
       avatar: "/images/avatars/avatar-4.png",
-      linkedin: "https://www.linkedin.com/in/uiux-adesh-gaikwad"
+      linkedin: "https://www.linkedin.com/in/uiux-adesh-gaikwad",
+      type: "accent"
     },
     {
       id: 5,
@@ -88,7 +92,8 @@ const HomePage = () => {
       role: "Product Designer, Fluidesigns",
       tags: ["Problem-solver", "Deadline wizard", "OG of the team"],
       avatar: "/images/avatars/avatar-5.png",
-      linkedin: "https://www.linkedin.com/in/danish-shafi-mir/"
+      linkedin: "https://www.linkedin.com/in/danish-shafi-mir/",
+      type: "accent"
     },
     {
       id: 6,
@@ -98,7 +103,8 @@ const HomePage = () => {
       role: "Product designer, Fluidesigns",
       tags: ["Team catalyst", "Problem-solver", "Deadline wizard"],
       avatar: "/images/avatars/avatar-2.png",
-      linkedin: "https://www.linkedin.com/in/arjun-na1r"
+      linkedin: "https://www.linkedin.com/in/arjun-na1r",
+      type: "accent"
     }
   ];
 
@@ -245,6 +251,41 @@ const HomePage = () => {
     setOpenPopupId(null);
   };
 
+  // Keep auto-scrolling and add manual control
+  const [manualOffset, setManualOffset] = useState(0);
+  const [isManualScrolling, setIsManualScrolling] = useState(false);
+  const cardWidth = 444; // 420px card width + 24px gap
+  const testimonialTrackRef = useRef(null);
+
+  // Function to handle manual scrolling while keeping auto-scroll
+  const handleManualScroll = (direction) => {
+    if (!testimonialTrackRef.current) return;
+    
+    // Pause auto-animation during manual scroll
+    setIsManualScrolling(true);
+    testimonialTrackRef.current.style.animationPlayState = 'paused';
+    
+    // Calculate new offset
+    let newOffset;
+    if (direction === 'left') {
+      newOffset = manualOffset + cardWidth;
+    } else {
+      newOffset = manualOffset - cardWidth;
+    }
+    
+    // Apply the new offset
+    setManualOffset(newOffset);
+    
+    // Resume auto-animation after the manual scroll transition completes
+    setTimeout(() => {
+      if (testimonialTrackRef.current) {
+        setIsManualScrolling(false);
+        testimonialTrackRef.current.style.animationPlayState = 'running';
+        setManualOffset(0); // Reset manual offset
+      }
+    }, 700); // Slightly longer than transition duration
+  };
+
   const TestimonialsSection = () => {
     // First, make sure we have at least twice as many cards for proper looping
     const duplicatedTestimonials = [...testimonials, ...testimonials];
@@ -255,9 +296,34 @@ const HomePage = () => {
           <h2 className="section-title">Few Kind Words From My Collaborators</h2>
           
           <div className="testimonials-container">
-            <div className="testimonials-track">
+            {/* Keep the shadow overlay elements */}
+            <div className="testimonials-fade testimonials-fade-left"></div>
+            <div className="testimonials-fade testimonials-fade-right"></div>
+            
+            <button 
+              className="scroll-button scroll-left"
+              onClick={() => handleManualScroll('left')}
+              aria-label="Scroll left"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            
+            <div 
+              className="testimonials-track" 
+              ref={testimonialTrackRef}
+              style={isManualScrolling ? { 
+                transform: `translateX(${manualOffset}px)`,
+                transition: 'transform 0.5s ease',
+                animationPlayState: 'paused'
+              } : {}}
+            >
               {duplicatedTestimonials.map((testimonial, index) => (
-                <div className="testimonial-card" key={`testimonial-${testimonial.id}-${index}`}>
+                <div 
+                  className={`testimonial-card ${testimonial.type || 'accent'}`} 
+                  key={`testimonial-${testimonial.id}-${index}`}
+                >
                   <div className="testimonial-content">
                     <p className="testimonial-text">
                       {testimonial.shortText}
@@ -299,6 +365,16 @@ const HomePage = () => {
                 </div>
               ))}
             </div>
+            
+            <button 
+              className="scroll-button scroll-right"
+              onClick={() => handleManualScroll('right')}
+              aria-label="Scroll right"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
           </div>
           
           {/* Testimonial Popup */}
@@ -339,28 +415,6 @@ const HomePage = () => {
       </section>
     );
   };
-
-  // Add this effect to ensure continuous, seamless rotation
-  useEffect(() => {
-    const trackElement = document.querySelector('.testimonials-track');
-    if (!trackElement) return;
-    
-    const handleAnimation = (e) => {
-      if (e.type === 'animationiteration') {
-        // When animation completes one iteration, reset position instantly
-        // This creates the illusion of infinite scrolling
-        trackElement.style.animation = 'none';
-        trackElement.offsetHeight; // Trigger reflow
-        trackElement.style.animation = 'testimonialSlide 60s linear infinite';
-      }
-    };
-    
-    trackElement.addEventListener('animationiteration', handleAnimation);
-    
-    return () => {
-      trackElement.removeEventListener('animationiteration', handleAnimation);
-    };
-  }, []);
 
   return (
     <div className="home-page">
