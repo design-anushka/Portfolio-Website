@@ -1525,10 +1525,10 @@
   }
   
   .about-text-container {
-    padding: $spacing-3xl;
+    padding: $spacing-2xl;
     
     @media (min-width: $breakpoint-lg) {
-      padding: $spacing-4xl;
+      padding: $spacing-2xl;
     }
     
     .about-text {

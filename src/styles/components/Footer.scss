@@ -4,6 +4,7 @@
   background-color: $primary-color;
   color: white;
   padding: 0 0 $spacing-xl;
+  padding-bottom: 0;
   
   p{
     margin-bottom: 0px;
@@ -123,6 +124,7 @@
   // Contact CTA Section
   .contact-cta-section {
     padding: $spacing-5xl $spacing-md $spacing-3xl;
+    padding-bottom: 18px;
     background-color: $primary-color;
     color: white;
     text-align: center;

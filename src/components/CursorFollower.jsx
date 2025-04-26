@@ -83,8 +83,8 @@ const CursorFollower = () => {
         top: `${position.y}px` 
       }}
     >
-      <div className="cursor-dot"></div>
-      <div className="cursor-circle"></div>
+      {/* <div className="cursor-dot"></div>
+      <div className="cursor-circle"></div> */}
     </div>
   )
 }
