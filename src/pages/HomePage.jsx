@@ -517,18 +517,15 @@ const HomePage = () => {
                 </p> */}
 
                 <p className="about-text">
-                  After my B.Tech in CSE, I began in QA, building a strong foundation in product functionality and user flows. It sharpened my analytical skills and sparked a passion for user experience.
+                  With a proven track record of delivering end-to-end UX solutions across healthcare, fintech, and enterprise SaaS, I bring 5 years of industry experience and a unique combination of UX design and QA expertise.
                 </p>
 
                 <p className="about-text">
-                  For the past 5 years, I've worked in UX design—applying empathy and problem-solving across research, IA, wireframing, and strategy to craft intuitive, user-first solutions.
+                  I’ve collaborated with cross-functional teams, worked directly with clients, and contributed to crafting intuitive, research-driven experiences.
                 </p>
 
                 <p className="about-text">
-                  What drives me?
-                  <br />– Solving real problems through design
-                  <br />– Research-backed, seamless journeys
-                  <br />– Clarity through clean, simple workflows
+                  My strengths include simplifying complex workflows, structuring clear information architecture, and delivering high-impact digital products. I’m available to join immediately in a full-time UI/UX or Product Design role.
                 </p>
 
                 
