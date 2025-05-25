@@ -510,7 +510,20 @@ const HomePage = () => {
             ))}
           </div>
           <div className="more-projects-message">
-            These are just a few of my live projects. I have a lot more to share—mobile apps, SaaS platforms, dashboards, and more! If you're curious or want to see something specific, let's connect for a conversation about how we can create something amazing together.
+            <strong>And that's just the surface.</strong>
+            I've got stories, strategies, and design moves you'll want to hear — from mobile apps to SaaS platforms, dashboards, and beyond.
+            <span style={{display: 'block', margin: '18px 0 0 0', fontWeight: 600, color: '#8B5CF6'}}>If this caught your eye, we're already halfway there.</span>
+            <span style={{display: 'block', marginTop: '8px', fontWeight: 600, fontSize: '1.1em'}}>
+              <span 
+                className="talk-text"
+                onClick={() => {
+                  document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+                }}
+              >
+                Let's talk
+              </span>
+              {" "}— because missing this conversation might just be your team's biggest design regret.
+            </span>
           </div>
         </div>
       </section>
