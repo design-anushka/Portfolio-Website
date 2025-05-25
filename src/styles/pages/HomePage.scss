@@ -1764,19 +1764,20 @@
   
   .section-title {
     // Use the common section title styling
+    margin-bottom: $spacing-lg;
   }
   
   .photo-gallery-container {
     width: 100%;
     position: relative;
-    margin-top: $spacing-2xl;
+    margin-top: $spacing-xl;
     overflow: hidden;
   }
   
   // Auto-rotating track
   .photo-gallery-track {
     display: flex;
-    gap: 24px;
+    gap: 32px;
     animation: infiniteScroll 60s linear infinite;
     width: max-content;
     padding: $spacing-md $spacing-lg;
@@ -1788,13 +1789,13 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-360px * 9 - 24px * 9)); // Updated for new card width and 9 photos
+      transform: translateX(calc(-420px * 9 - 32px * 9)); // Updated for new card width and 9 photos
     }
   }
   
   .photo-item {
     flex: 0 0 auto;
-    width: 360px; // More moderate size
+    width: 420px; // Increased width
     margin: $spacing-md $spacing-sm;
     position: relative;
     transform-origin: center;
@@ -1909,14 +1910,19 @@
   .photo-frame {
     background-color: white;
     border-radius: 12px;
-    padding: $spacing-md;
+    padding: $spacing-lg; // Increased padding
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 0, 0.05);
+    min-height: 340px; // Add extra vertical size
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     
     img {
       width: 100%;
-      aspect-ratio: 3/2;
+      height: 400px;
       object-fit: cover;
       border-radius: 8px;
       display: block;

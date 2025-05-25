@@ -798,7 +798,7 @@ const HomePage = () => {
                   <div className="grain"></div>
                 </div>
                 <div className="photo-frame">
-                  <img src="/images/camera.jpg" alt="Photography" />
+                  <img src="/images/camera.jpg" alt="Photography" className="photo-camera" />
                   <div className="photo-caption">
                     {/*<p className="caption-title">Photography</p>*/}
                     <p className="caption-location">Chasing stillness through my lens</p>
@@ -952,7 +952,7 @@ const HomePage = () => {
                   <div className="grain"></div>
                 </div>
                 <div className="photo-frame">
-                  <img src="/images/camera.jpg" alt="Photography" />
+                  <img src="/images/camera.jpg" alt="Photography" className="photo-camera" />
                   <div className="photo-caption">
                     <p className="caption-title">Photography</p>
                     <p className="caption-location">Chasing stillness through my lens</p>
