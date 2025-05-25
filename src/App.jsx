@@ -9,6 +9,7 @@ import Footer from './components/Footer'
 import CursorFollower from './components/CursorFollower'
 import ScrollToTop from './components/ScrollToTop'
 import ScrollToTopButton from './components/ScrollToTopButton'
+import CustomCursor from './components/CustomCursor'
 import './styles/App.scss'
 import { useEffect } from 'react'
 
@@ -24,6 +25,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
+      <CustomCursor />
       <div className="app" style={{ fontFamily: 'Arial, sans-serif' }}>
         <CursorFollower />
         <Header />

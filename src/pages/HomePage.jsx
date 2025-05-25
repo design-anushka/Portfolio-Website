@@ -2,6 +2,13 @@ import { Link } from 'react-router-dom'
 import '../styles/pages/HomePage.scss'
 import { useEffect, useRef, useState } from 'react'
 
+const projectExternalLinks = {
+  'epic-on': 'https://www.epicon.in/',
+  'pebble-impact': 'https://www.pebbleimpact.com/',
+  'corpcare': 'https://corpcare.co.in/',
+  'feedify': 'https://feedify.net/',
+}
+
 const HomePage = () => {
   // Featured projects data
   const featuredProjects = [
@@ -469,26 +476,41 @@ const HomePage = () => {
             {featuredProjects.map((project) => (
               <Link to={`/work/${project.slug}`} className="project-card-link" key={project.id}>
                 <div className="project-card">
-                <div className="project-content">
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="project-description">{project.description}</p>
-                  
-                  <div className="project-tags">
-                    {project.tags.map((tag, tagIndex) => (
-                      <span className="tag" key={tagIndex}>{tag}</span>
-                    ))}
-                  </div>
-                  
-                    <div className="view-case-study">
-                    View Case Study <span className="arrow">→</span>
+                  <div className="project-content">
+                    <div className="project-title-row">
+                      <h3 className="project-title">{project.title}</h3>
+                      <a
+                        href={projectExternalLinks[project.slug]}
+                        className="external-link-icon"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={e => e.stopPropagation()}
+                        aria-label={`Visit ${project.title} website`}
+                      >
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M7 17L17 7M17 7H10M17 7V14" stroke="#8B5CF6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </a>
                     </div>
-                </div>
-                <div className="project-image">
+                    <p className="project-description">{project.description}</p>
+                    <div className="project-tags">
+                      {project.tags.map((tag, tagIndex) => (
+                        <span className="tag" key={tagIndex}>{tag}</span>
+                      ))}
+                    </div>
+                    <div className="view-case-study">
+                      View Case Study <span className="arrow">→</span>
+                    </div>
+                  </div>
+                  <div className="project-image">
                     <img src={`/images/${project.id}.png`} alt={project.title} />
                   </div>
                 </div>
               </Link>
             ))}
+          </div>
+          <div className="more-projects-message">
+            These are just a few of my live projects. I have a lot more to share—mobile apps, SaaS platforms, dashboards, and more! If you're curious or want to see something specific, let's connect for a conversation about how we can create something amazing together.
           </div>
         </div>
       </section>
@@ -521,11 +543,11 @@ const HomePage = () => {
                 </p>
 
                 <p className="about-text">
-                  I’ve collaborated with cross-functional teams, worked directly with clients, and contributed to crafting intuitive, research-driven experiences.
+                  I've collaborated with cross-functional teams, worked directly with clients, and contributed to crafting intuitive, research-driven experiences.
                 </p>
 
                 <p className="about-text">
-                  My strengths include simplifying complex workflows, structuring clear information architecture, and delivering high-impact digital products. I’m available to join immediately in a full-time UI/UX or Product Design role.
+                  My strengths include simplifying complex workflows, structuring clear information architecture, and delivering high-impact digital products. I'm available to join immediately in a full-time UI/UX or Product Design role.
                 </p>
 
                 
