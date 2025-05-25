@@ -260,7 +260,7 @@
 }
 
 .case-study-page {
-  padding-top: $header-height; // Removed extra space that was for breadcrumb
+  padding-top: $header-height;
   min-height: calc(100vh - #{$header-height});
   display: flex;
   flex-direction: column;
@@ -268,14 +268,50 @@
   width: 100%;
   background-color: white;
   
+  .breadcrumb-container {
+    padding: $spacing-sm 0;
+    position: fixed;
+    top: $header-height;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    font-size: $font-size-sm;
+    padding: $spacing-xs 0;
+    
+    .home-link {
+      color: $dark-gray;
+      text-decoration: none;
+      transition: color $transition-fast;
+      
+      &:hover {
+        color: $accent-color;
+      }
+    }
+    
+    .separator {
+      color: $medium-gray;
+    }
+    
+    .current {
+      color: $text-color;
+      font-weight: 500;
+    }
+  }
+  
   .case-study-image-container {
     width: 100%;
-    max-width: 1080px; // Control maximum width of the case study
+    max-width: 1080px;
     margin: 0 auto;
-    padding: 0 $spacing-md;
+    padding: $spacing-2xl $spacing-md 0;
     
     @media (min-width: $breakpoint-lg) {
-      padding: 0;
+      padding: $spacing-2xl 0 0;
     }
     
     .case-study-image {

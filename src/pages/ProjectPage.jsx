@@ -1,4 +1,4 @@
-import { useParams, Navigate } from 'react-router-dom'
+import { useParams, Navigate, Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import '../styles/pages/ProjectPage.scss'
 
@@ -48,7 +48,15 @@ const ProjectPage = () => {
 
   return (
     <div className="case-study-page">
-      {/* Removed breadcrumb navigation */}
+      <div className="breadcrumb-container">
+        <div className="container">
+          <div className="breadcrumb">
+            <Link to="/" className="home-link">Homepage</Link>
+            <span className="separator">/</span>
+            <span className="current">{project.title} case study</span>
+          </div>
+        </div>
+      </div>
       
       <div className="case-study-image-container">
         <img 

@@ -202,21 +202,6 @@
   @media (min-width: $breakpoint-lg) {
     font-size: $font-size-5xl;
   }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    right: 0;
-    width: 100%; // Adjust width to fit the image
-    height: 12px; // Adjust height to match the SVG
-    background-image: url('/images/stroke.svg');
-    background-repeat: no-repeat;
-    background-position: right center;
-    background-size: 60% auto; // Adjust size as needed
-    transform: translateY(-50%);
-    opacity: 0.9;
-  }
 }
 
 // Work Section - Updated cards and CTA hover effects

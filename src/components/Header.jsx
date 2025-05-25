@@ -62,6 +62,35 @@ const Header = () => {
     }
   }
 
+  // Add effect to handle hash navigation
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash
+      if (hash) {
+        const sectionId = hash.substring(1) // Remove the # symbol
+        setTimeout(() => scrollToSection(sectionId), 100) // Small delay to ensure DOM is ready
+      }
+    }
+
+    // Handle initial load with hash
+    handleHashChange()
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
+
+  // Handle navigation from case study pages
+  const handleNavigation = (sectionId) => {
+    if (isHomePage) {
+      // If on homepage, just scroll
+      scrollToSection(sectionId)
+    } else {
+      // If on another page, navigate to homepage with hash
+      window.location.href = `/#${sectionId}`
+    }
+  }
+
   // Logo click handler - conditional based on current page
   const handleLogoClick = (e) => {
     if (isHomePage) {
@@ -103,19 +132,19 @@ const Header = () => {
                 <li>
                   <a href="#work" onClick={(e) => {
                     e.preventDefault()
-                    scrollToSection('work')
+                    handleNavigation('work')
                   }}>Work</a>
                 </li>
                 <li>
                   <a href="#about" onClick={(e) => {
                     e.preventDefault()
-                    scrollToSection('about')
+                    handleNavigation('about')
                   }}>About</a>
                 </li>
                 <li>
                   <a href="#contact" onClick={(e) => {
                     e.preventDefault()
-                    scrollToSection('contact')
+                    handleNavigation('contact')
                   }}>Contact</a>
                 </li>
               </ul>
