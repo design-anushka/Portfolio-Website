@@ -1778,7 +1778,7 @@
   .photo-gallery-track {
     display: flex;
     gap: 32px;
-    animation: infiniteScroll 60s linear infinite;
+    animation: infiniteScroll 55s linear infinite;
     width: max-content;
     padding: $spacing-md $spacing-lg;
   }
@@ -1789,7 +1789,8 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-420px * 9 - 32px * 9)); // Updated for new card width and 9 photos
+      /* Move by the width of the original set only (9 cards + 8 gaps) */
+      transform: translateX(calc(-420px * 9 - 32px * 8));
     }
   }
   
