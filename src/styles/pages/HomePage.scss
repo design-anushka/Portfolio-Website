@@ -1087,11 +1087,28 @@
   
   .testimonials-track {
     display: flex;
-    gap: $spacing-lg;
+    gap: 24px;
+    padding: 20px 0;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     animation: infiniteScroll 60s linear infinite;
     width: max-content;
-    padding: $spacing-md 2rem $spacing-xl;
-    will-change: transform; // Optimize for animations
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  
+  @keyframes infiniteScroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-444px * 6)); // 6 cards * (card width + gap)
+    }
   }
   
   // Shadow overlays for fade effect
@@ -1317,6 +1334,11 @@
   
   .testimonial-card:nth-child(even) {
     border-top: 4px solid $accent-color;
+  }
+
+  // Remove navigation arrows styles
+  .navigation-arrows {
+    display: none;
   }
 }
 
@@ -1740,10 +1762,8 @@
   padding: 0;
   position: relative;
   
-  // Updated heading to match other sections
   .section-title {
     // Use the common section title styling
-    // No custom styles needed here as it will inherit from the common styles
   }
   
   .photo-gallery-container {
@@ -1756,8 +1776,8 @@
   // Auto-rotating track
   .photo-gallery-track {
     display: flex;
-    gap: $spacing-xl;
-    animation: infiniteScroll 40s linear infinite;
+    gap: 24px;
+    animation: infiniteScroll 60s linear infinite;
     width: max-content;
     padding: $spacing-md $spacing-lg;
   }
@@ -1768,13 +1788,13 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-320px * 6 - #{$spacing-xl} * 6));
+      transform: translateX(calc(-360px * 9 - 24px * 9)); // Updated for new card width and 9 photos
     }
   }
   
   .photo-item {
     flex: 0 0 auto;
-    width: 320px;
+    width: 360px; // More moderate size
     margin: $spacing-md $spacing-sm;
     position: relative;
     transform-origin: center;
@@ -1782,23 +1802,29 @@
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     
     // Assign different rotations to each photo
-    &:nth-child(1) { --rotation: -3; }
-    &:nth-child(2) { --rotation: 2; }
-    &:nth-child(3) { --rotation: -2; }
-    &:nth-child(4) { --rotation: 3; }
-    &:nth-child(5) { --rotation: -4; }
+    &:nth-child(1) { --rotation: -2; }
+    &:nth-child(2) { --rotation: 1; }
+    &:nth-child(3) { --rotation: -1; }
+    &:nth-child(4) { --rotation: 2; }
+    &:nth-child(5) { --rotation: -2; }
     &:nth-child(6) { --rotation: 1; }
+    &:nth-child(7) { --rotation: -1; }
+    &:nth-child(8) { --rotation: 2; }
+    &:nth-child(9) { --rotation: -2; }
     
     // Repeat for duplicated images
-    &:nth-child(7) { --rotation: -2; }
-    &:nth-child(8) { --rotation: 3; }
-    &:nth-child(9) { --rotation: -3; }
-    &:nth-child(10) { --rotation: 2; }
+    &:nth-child(10) { --rotation: 1; }
     &:nth-child(11) { --rotation: -1; }
-    &:nth-child(12) { --rotation: 4; }
+    &:nth-child(12) { --rotation: 2; }
+    &:nth-child(13) { --rotation: -2; }
+    &:nth-child(14) { --rotation: 1; }
+    &:nth-child(15) { --rotation: -1; }
+    &:nth-child(16) { --rotation: 2; }
+    &:nth-child(17) { --rotation: -2; }
+    &:nth-child(18) { --rotation: 1; }
     
     &:hover {
-      transform: scale(1.08);
+      transform: scale(1.05);
       z-index: 10;
       
       .photo-frame {
@@ -1811,20 +1837,20 @@
     }
   }
   
-  // Updated vertical wooden clothespin clip design
+  // Restore wooden clothespin clip design
   .photo-clip {
     position: absolute;
-    top: -40px; // Position higher to accommodate vertical orientation
+    top: -40px;
     left: 50%;
-    width: 20px; // Narrower for vertical orientation
-    height: 60px; // Taller for vertical orientation
+    width: 20px;
+    height: 60px;
     transform: translateX(-50%);
     transition: transform $transition-fast;
     z-index: 3;
     
     // Wooden clothespin base
     background: linear-gradient(to right, #e6d2b5 0%, #d4b78f 100%);
-    border-radius: 4px 4px 10px 10px; // Rounded at bottom for vertical pin
+    border-radius: 4px 4px 10px 10px;
     
     // Create the clip opening at bottom
     &::before {
@@ -1878,16 +1904,11 @@
       background-color: rgba(0, 0, 0, 0.15);
       transform: translateX(-50%);
     }
-    
-    // Remove color variations as we're using wooden style for all
-    &.clip-red, &.clip-blue {
-      background: linear-gradient(to right, #e6d2b5 0%, #d4b78f 100%);
-    }
   }
   
   .photo-frame {
     background-color: white;
-    border-radius: 8px;
+    border-radius: 12px;
     padding: $spacing-md;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
@@ -1897,39 +1918,31 @@
       width: 100%;
       aspect-ratio: 3/2;
       object-fit: cover;
-      border-radius: 4px;
+      border-radius: 8px;
       display: block;
     }
   }
   
   // Caption styling
   .photo-caption {
-    margin-top: $spacing-xs;
-    padding: $spacing-xs 0;
-    
-    .caption-title {
-      font-weight: 600;
-      font-size: $font-size-lg;
-      color: $text-color;
-      margin-bottom: 2px;
-    }
+    margin-top: $spacing-sm;
+    padding: $spacing-sm 0;
     
     .caption-location {
       font-size: $font-size-md;
       color: $accent-color;
+      font-weight: 500;
+      line-height: 1.4;
     }
   }
 }
 
+// Remove drag-related styles
 .photo-gallery-container {
-  // Add these styles for drag interaction
-  cursor: grab;
-  
+  // Remove cursor styles
   &.active {
-    cursor: grabbing;
-    
     .photo-item {
-      pointer-events: none; // Prevent clicks during drag
+      pointer-events: auto;
     }
   }
 }
@@ -1993,15 +2006,15 @@
   margin: 32px auto 0 auto;
   max-width: 800px;
   width: 100%;
-  background: rgba(139,92,246,0.02);
-  border: 1px solid rgba(139,92,246,0.08);
-  border-radius: 12px;
-  padding: 24px 32px;
+  background: linear-gradient(135deg, rgba(139,92,246,0.03) 0%, rgba(139,92,246,0.06) 100%);
+  border: 1px solid rgba(139,92,246,0.12);
+  border-radius: 16px;
+  padding: 32px 40px;
   font-size: 1.05rem;
   color: #4a4a6a;
   font-weight: 400;
-  box-shadow: 0 2px 12px rgba(139, 92, 246, 0.04);
-  line-height: 1.6;
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.06);
+  line-height: 1.7;
   letter-spacing: 0.01em;
   text-align: center;
   display: flex;
@@ -2010,16 +2023,30 @@
   justify-content: center;
   transition: all 0.3s ease;
   position: relative;
+  backdrop-filter: blur(8px);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top right, rgba(139,92,246,0.08), transparent 70%);
+    border-radius: 16px;
+    z-index: 0;
+  }
 
   strong {
-    font-size: 1.1em;
+    font-size: 1.2em;
     color: #8B5CF6;
     font-weight: 600;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     letter-spacing: 0.01em;
     display: block;
     position: relative;
-    padding-left: 24px;
+    padding-left: 28px;
+    z-index: 1;
 
     &::before {
       content: '✨';
@@ -2035,13 +2062,16 @@
     display: block;
     margin: 12px 0;
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
 
     &.talk-text {
-      color: #4a4a6a; // Default black color
+      color: #4a4a6a;
       cursor: pointer;
       display: inline;
       position: relative;
       padding: 0 2px;
+      font-weight: 700;
       
       &::after {
         content: '';
@@ -2055,7 +2085,7 @@
       }
 
       &:hover {
-        color: $accent-color; // Change to accent color on hover
+        color: $accent-color;
         
         &::after {
           background: $accent-color;
@@ -2066,9 +2096,9 @@
   }
 
   &:hover {
-    background: rgba(139,92,246,0.04);
-    border-color: rgba(139,92,246,0.12);
     transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(139, 92, 246, 0.1);
+    border-color: rgba(139,92,246,0.2);
   }
 }
 
@@ -2079,6 +2109,6 @@
     min-width: 0;
     margin-left: 0;
     margin-right: 0;
-    padding: 28px 40px;
+    padding: 40px 48px;
   }
 } 

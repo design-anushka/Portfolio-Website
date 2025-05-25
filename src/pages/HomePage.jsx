@@ -274,9 +274,13 @@ const HomePage = () => {
     
     // Calculate new offset
     let newOffset;
+    const cardWidth = 444; // Width of card + gap
+    
     if (direction === 'left') {
+      // Move one card to the right (showing more content from left)
       newOffset = manualOffset + cardWidth;
     } else {
+      // Move one card to the left (showing more content from right)
       newOffset = manualOffset - cardWidth;
     }
     
@@ -303,28 +307,12 @@ const HomePage = () => {
           <h2 className="section-title">Few Kind Words From My Collaborators</h2>
           
           <div className="testimonials-container">
-            {/* Keep the shadow overlay elements */}
             <div className="testimonials-fade testimonials-fade-left"></div>
             <div className="testimonials-fade testimonials-fade-right"></div>
-            
-            {/* <button 
-              className="scroll-button scroll-left"
-              onClick={() => handleManualScroll('left')}
-              aria-label="Scroll left"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
-            </button> */}
             
             <div 
               className="testimonials-track" 
               ref={testimonialTrackRef}
-              style={isManualScrolling ? { 
-                transform: `translateX(${manualOffset}px)`,
-                transition: 'transform 0.5s ease',
-                animationPlayState: 'paused'
-              } : {}}
             >
               {duplicatedTestimonials.map((testimonial, index) => (
                 <div 
@@ -372,16 +360,6 @@ const HomePage = () => {
                 </div>
               ))}
             </div>
-            
-            {/* <button 
-              className="scroll-button scroll-right"
-              onClick={() => handleManualScroll('right')}
-              aria-label="Scroll right"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </button> */}
           </div>
           
           {/* Testimonial Popup */}
@@ -667,15 +645,15 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* When I'm Not... Section - Updated with vertical wooden clothespin clips */}
-      {/* <section className="when-im-not-section section">
+      {/* My Creative Escape Section */}
+      <section className="when-im-not-section section">
         <div className="container">
-          <h2 className="section-title">When I'm not designing</h2>
+          <h2 className="section-title">My Creative Escape</h2>
           
           <div className="photo-gallery-container">
             <div className="photo-gallery-track">
-              {/* First set of photos with updated vertical clips */}
-              {/* <div className="photo-item">
+              {/* First set of photos */}
+              <div className="photo-item">
                 <div className="photo-clip">
                   <div className="divider"></div>
                   <div className="grain"></div>
@@ -684,10 +662,10 @@ const HomePage = () => {
                   <div className="grain"></div>
                 </div>
                 <div className="photo-frame">
-                  <img src="/images/hobbies/hiking.jpg" alt="Being Candid" />
+                  <img src="/images/rangoli.JPG" alt="Rangoli Art" />
                   <div className="photo-caption">
-                    <p className="caption-title">Being Candid</p>
-                    <p className="caption-location">Dang falls, Gujarat</p>
+                    {/*<p className="caption-title">Rangoli Art</p>*/}
+                    <p className="caption-location">Celebrating tradition through color and pattern</p>
                   </div>
                 </div>
               </div>
@@ -701,10 +679,10 @@ const HomePage = () => {
                   <div className="grain"></div>
                 </div>
                 <div className="photo-frame">
-                  <img src="/images/hobbies/photography.jpg" alt="Having an headache" />
+                  <img src="/images/shivmandala.JPG" alt="Shiv Mandala" />
                   <div className="photo-caption">
-                    <p className="caption-title">Having an headache</p>
-                    <p className="caption-location">Dang falls, Gujarat</p>
+                    {/*<p className="caption-title">Shiv Mandala</p>*/}
+                    <p className="caption-location">Finding focus in hand-drawn details</p>
                   </div>
                 </div>
               </div>
@@ -718,10 +696,10 @@ const HomePage = () => {
                   <div className="grain"></div>
                 </div>
                 <div className="photo-frame">
-                  <img src="/images/hobbies/beach.jpg" alt="Bonding with brother" />
+                  <img src="/images/illustration.JPG" alt="Digital Illustration" />
                   <div className="photo-caption">
-                    <p className="caption-title">Bonding with brother</p>
-                    <p className="caption-location">Valley of Flowers</p>
+                    {/*<p className="caption-title">Digital Illustration</p>*/}
+                    <p className="caption-location">Adding something new to my creative repository</p>
                   </div>
                 </div>
               </div>
@@ -735,10 +713,10 @@ const HomePage = () => {
                   <div className="grain"></div>
                 </div>
                 <div className="photo-frame">
-                  <img src="/images/hobbies/reading.jpg" alt="Chilling at 12000 ft" />
+                  <img src="/images/digitalmandala.PNG" alt="Digital Mandala" />
                   <div className="photo-caption">
-                    <p className="caption-title">Chilling at 12000 ft</p>
-                    <p className="caption-location">Chandrashila</p>
+                    {/*<p className="caption-title">Digital Mandala</p>*/}
+                    <p className="caption-location">Escaping into symmetry on screen</p>
                   </div>
                 </div>
               </div>
@@ -752,10 +730,10 @@ const HomePage = () => {
                   <div className="grain"></div>
                 </div>
                 <div className="photo-frame">
-                  <img src="/images/hobbies/cooking.jpg" alt="Near to death" />
+                  <img src="/images/painting.JPG" alt="Painting" />
                   <div className="photo-caption">
-                    <p className="caption-title">Near to death</p>
-                    <p className="caption-location">Mana village</p>
+                    {/*<p className="caption-title">Painting</p>*/}
+                    <p className="caption-location">Losing myself in color and calm</p>
                   </div>
                 </div>
               </div>
@@ -769,16 +747,67 @@ const HomePage = () => {
                   <div className="grain"></div>
                 </div>
                 <div className="photo-frame">
-                  <img src="/images/hobbies/travel.jpg" alt="Being the main character" />
+                  <img src="/images/himalaya.JPG" alt="Himalayan Beauty" />
                   <div className="photo-caption">
-                    <p className="caption-title">Being the main character</p>
-                    <p className="caption-location">Pondicherry</p>
+                    {/*<p className="caption-title">Himalayan Beauty</p>*/}
+                    <p className="caption-location">Where I Go to Breathe</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="photo-item">
+                <div className="photo-clip">
+                  <div className="divider"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                </div>
+                <div className="photo-frame">
+                  <img src="/images/mehendi.jpg" alt="Mehendi Art" />
+                  <div className="photo-caption">
+                    {/*<p className="caption-title">Mehendi Art</p>*/}
+                    <p className="caption-location">An art I picked up along the way</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="photo-item">
+                <div className="photo-clip">
+                  <div className="divider"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                </div>
+                <div className="photo-frame">
+                  <img src="/images/clouds.jpeg" alt="Cloud Photography" />
+                  <div className="photo-caption">
+                    {/*<p className="caption-title">Cloud Photography</p>*/}
+                    <p className="caption-location">Capturing nature's formations from above</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="photo-item">
+                <div className="photo-clip">
+                  <div className="divider"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                </div>
+                <div className="photo-frame">
+                  <img src="/images/camera.jpg" alt="Photography" />
+                  <div className="photo-caption">
+                    {/*<p className="caption-title">Photography</p>*/}
+                    <p className="caption-location">Chasing stillness through my lens</p>
                   </div>
                 </div>
               </div>
               
               {/* Duplicate photos for continuous scrolling */}
-              {/* <div className="photo-item">
+              <div className="photo-item">
                 <div className="photo-clip">
                   <div className="divider"></div>
                   <div className="grain"></div>
@@ -787,17 +816,15 @@ const HomePage = () => {
                   <div className="grain"></div>
                 </div>
                 <div className="photo-frame">
-                  <img src="/images/hobbies/hiking.jpg" alt="Being Candid" />
+                  <img src="/images/rangoli.JPG" alt="Rangoli Art" />
                   <div className="photo-caption">
-                    <p className="caption-title">Being Candid</p>
-                    <p className="caption-location">Dang falls, Gujarat</p>
+                    {/*<p className="caption-title">Rangoli Art</p>*/}
+                    <p className="caption-location">Celebrating tradition through color and pattern</p>
                   </div>
                 </div>
               </div>
               
-              {/* Remaining duplicated items with vertical clips */}
-                           {/* Remaining duplicated items with vertical clips */}
-                           {/* <div className="photo-item">
+              <div className="photo-item">
                 <div className="photo-clip">
                   <div className="divider"></div>
                   <div className="grain"></div>
@@ -805,63 +832,137 @@ const HomePage = () => {
                   <div className="grain"></div>
                   <div className="grain"></div>
                 </div>
-                <div className="photo-clip"></div>
                 <div className="photo-frame">
-                  <img src="/images/hobbies/photography.jpg" alt="Having an headache" />
+                  <img src="/images/shivmandala.JPG" alt="Shiv Mandala" />
                   <div className="photo-caption">
-                    <p className="caption-title">Having an headache</p>
-                    <p className="caption-location">Dang falls, Gujarat</p>
+                    {/*<p className="caption-title">Shiv Mandala</p>*/}
+                    <p className="caption-location">Finding focus in hand-drawn details</p>
                   </div>
                 </div>
               </div>
               
               <div className="photo-item">
-                <div className="photo-clip"></div>
+                <div className="photo-clip">
+                  <div className="divider"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                </div>
                 <div className="photo-frame">
-                  <img src="/images/hobbies/beach.jpg" alt="Bonding with brother" />
+                  <img src="/images/illustration.JPG" alt="Digital Illustration" />
                   <div className="photo-caption">
-                    <p className="caption-title">Bonding with brother</p>
-                    <p className="caption-location">Valley of Flowers</p>
+                    {/*<p className="caption-title">Digital Illustration</p>*/}
+                    <p className="caption-location">Adding something new to my creative repository</p>
                   </div>
                 </div>
               </div>
               
               <div className="photo-item">
-                <div className="photo-clip"></div>
+                <div className="photo-clip">
+                  <div className="divider"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                </div>
                 <div className="photo-frame">
-                  <img src="/images/hobbies/reading.jpg" alt="Chilling at 12000 ft" />
+                  <img src="/images/digitalmandala.PNG" alt="Digital Mandala" />
                   <div className="photo-caption">
-                    <p className="caption-title">Chilling at 12000 ft</p>
-                    <p className="caption-location">Chandrashila</p>
+                    {/*<p className="caption-title">Digital Mandala</p>*/}
+                    <p className="caption-location">Escaping into symmetry on screen</p>
                   </div>
                 </div>
               </div>
               
               <div className="photo-item">
-                <div className="photo-clip"></div>
+                <div className="photo-clip">
+                  <div className="divider"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                </div>
                 <div className="photo-frame">
-                  <img src="/images/hobbies/cooking.jpg" alt="Near to death" />
+                  <img src="/images/painting.JPG" alt="Painting" />
                   <div className="photo-caption">
-                    <p className="caption-title">Near to death</p>
-                    <p className="caption-location">Mana village</p>
+                    {/*<p className="caption-title">Painting</p>*/}
+                    <p className="caption-location">Losing myself in color and calm</p>
                   </div>
                 </div>
               </div>
               
-              <div className="photo-item"> */}
-                {/* <div className="photo-clip"></div>
+              <div className="photo-item">
+                <div className="photo-clip">
+                  <div className="divider"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                </div>
                 <div className="photo-frame">
-                  <img src="/images/hobbies/travel.jpg" alt="Being the main character" />
+                  <img src="/images/himalaya.JPG" alt="Himalayan Beauty" />
                   <div className="photo-caption">
-                    <p className="caption-title">Being the main character</p>
-                    <p className="caption-location">Pondicherry</p>
+                    <p className="caption-title">Himalayan Beauty</p>
+                    <p className="caption-location">Where I Go to Breathe</p>
                   </div>
-                </div> */}
-              {/* </div> */}
-            {/*</div>
+                </div>
+              </div>
+              
+              <div className="photo-item">
+                <div className="photo-clip">
+                  <div className="divider"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                </div>
+                <div className="photo-frame">
+                  <img src="/images/mehendi.jpg" alt="Mehendi Art" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Mehendi Art</p>
+                    <p className="caption-location">An art I picked up along the way</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="photo-item">
+                <div className="photo-clip">
+                  <div className="divider"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                </div>
+                <div className="photo-frame">
+                  <img src="/images/clouds.jpeg" alt="Cloud Photography" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Cloud Photography</p>
+                    <p className="caption-location">Capturing nature's formations from above</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="photo-item">
+                <div className="photo-clip">
+                  <div className="divider"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                  <div className="grain"></div>
+                </div>
+                <div className="photo-frame">
+                  <img src="/images/camera.jpg" alt="Photography" />
+                  <div className="photo-caption">
+                    <p className="caption-title">Photography</p>
+                    <p className="caption-location">Chasing stillness through my lens</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </section> */}
+      </section>
     </div>
   )
 }
