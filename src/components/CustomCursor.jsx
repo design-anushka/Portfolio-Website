@@ -28,15 +28,6 @@ const CustomCursor = () => {
       className={`custom-arrow-cursor${isVisible ? ' visible' : ''}`}
       style={{ left: `${position.x}px`, top: `${position.y}px` }}
     >
-      <svg className="cursor-arrow-svg" width="20" height="20" viewBox="0 0 20 20">
-        <polygon
-          points="2,2 18,9 11,11 9,18"
-          fill="#8B5CF6"
-          stroke="#fff"
-          strokeWidth="2"
-          filter="drop-shadow(0 1px 2px rgba(0,0,0,0.12))"
-        />
-      </svg>
       <div className="cursor-label">Hey, Nova</div>
     </div>
   )

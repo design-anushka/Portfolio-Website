@@ -1,5 +1,5 @@
 import { useParams, Navigate, Link } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import '../styles/pages/ProjectPage.scss'
 
 // Project data with image URLs for case studies
@@ -34,9 +34,23 @@ const ProjectPage = () => {
   const { slug } = useParams()
   const project = projectsData[slug]
 
+  // Add state to control breadcrumb visibility
+  const [hideBreadcrumb, setHideBreadcrumb] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [slug])
+
+  // Add scroll listener to hide/show breadcrumb
+  useEffect(() => {
+    const handleScroll = () => {
+      // Hide breadcrumb after scrolling down 40 pixels (adjust threshold as needed)
+      setHideBreadcrumb(window.scrollY > 40);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // If project doesn't exist, redirect to work page
   if (!project) {
@@ -48,7 +62,8 @@ const ProjectPage = () => {
 
   return (
     <div className="case-study-page">
-      <div className="breadcrumb-container">
+      {/* Apply hide class based on state */}
+      <div className={`breadcrumb-container${hideBreadcrumb ? ' hide' : ''}`}>
         <div className="container">
           <div className="breadcrumb">
             <Link to="/" className="home-link">Homepage</Link>

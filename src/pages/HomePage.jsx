@@ -401,6 +401,16 @@ const HomePage = () => {
     );
   };
 
+  const [hideBreadcrumb, setHideBreadcrumb] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setHideBreadcrumb(window.scrollY > 40); // Adjust threshold as needed
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="home-page">
       {/* Hero Section with updated CTA and non-highlighted Immediate Joiner */}
@@ -449,6 +459,10 @@ const HomePage = () => {
       <section className="work-section section" id="work">
         <div className="container">
           <h2 className="section-title">Some of my handpicked work</h2>
+          
+          <div className={`breadcrumb-container${hideBreadcrumb ? ' hide' : ''}`}>
+            {/* ... */}
+          </div>
           
           <div className="projects-container">
             {featuredProjects.map((project) => (
