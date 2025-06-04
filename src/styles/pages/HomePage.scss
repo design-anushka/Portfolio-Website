@@ -152,10 +152,46 @@
           }
         }
         
-        .previous-text {
-          font-size: $font-size-md;
-          color: #5d6b98;
-          font-weight: 500;
+        .previous-companies {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-top: 8px;
+
+          .previous-text {
+            margin: 0;
+            font-size: $font-size-md;
+            color: #5d6b98;
+            font-weight: 600;
+          }
+
+          .company-logos {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+
+            .company-logo {
+              height: 24px;
+              width: auto;
+              opacity: 1;
+              transition: transform 0.2s ease;
+
+              // Special styling for Fluidesigns logo
+              &[alt="Fluidesigns"] {
+                height: 38px;
+                margin-top: -2px;
+              }
+
+              // Special styling for Cognizant logo
+              &[alt="Cognizant"] {
+                margin-top: 2px;
+              }
+
+              &:hover {
+                transform: scale(1.08);
+              }
+            }
+          }
         }
       }
     }
