@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import '../styles/pages/HomePage.scss'
 import { useEffect, useRef, useState } from 'react'
+import { trackScrollDepth, trackTimeOnPage, trackProjectClick, trackExternalLink, trackTestimonialInteraction } from '../utils/analytics'
 
 const projectExternalLinks = {
   'epic-on': 'https://www.epicon.in/',
@@ -318,6 +319,7 @@ const HomePage = () => {
                 <div 
                   className={`testimonial-card ${testimonial.type || 'accent'}`} 
                   key={`testimonial-${testimonial.id}-${index}`}
+                  onClick={() => handleTestimonialInteraction('view', testimonial.id)}
                 >
                   <div className="testimonial-content">
                     <p className="testimonial-text">
@@ -328,6 +330,7 @@ const HomePage = () => {
                           onClick={(e) => {
                             e.stopPropagation();
                             setOpenPopupId(testimonial.id);
+                            handleTestimonialInteraction('read_more', testimonial.id);
                           }}
                         >
                           Read more
@@ -411,6 +414,35 @@ const HomePage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Add analytics tracking
+  useEffect(() => {
+    // Track scroll depth
+    const cleanupScrollTracking = trackScrollDepth();
+    
+    // Track time on page
+    const cleanupTimeTracking = trackTimeOnPage();
+    
+    return () => {
+      cleanupScrollTracking();
+      cleanupTimeTracking();
+    };
+  }, []);
+
+  // Update project card click handler
+  const handleProjectClick = (projectTitle) => {
+    trackProjectClick(projectTitle);
+  };
+
+  // Update external link click handler
+  const handleExternalLinkClick = (url) => {
+    trackExternalLink(url);
+  };
+
+  // Update testimonial interaction handler
+  const handleTestimonialInteraction = (action, testimonialId) => {
+    trackTestimonialInteraction(action, testimonialId);
+  };
+
   return (
     <div className="home-page">
       {/* Hero Section with updated CTA and non-highlighted Immediate Joiner */}
@@ -466,7 +498,12 @@ const HomePage = () => {
           
           <div className="projects-container">
             {featuredProjects.map((project) => (
-              <Link to={`/work/${project.slug}`} className="project-card-link" key={project.id}>
+              <Link 
+                to={`/work/${project.slug}`} 
+                className="project-card-link" 
+                key={project.id}
+                onClick={() => handleProjectClick(project.title)}
+              >
                 <div className="project-card">
                   <div className="project-content">
                     <div className="project-title-row">
@@ -476,7 +513,10 @@ const HomePage = () => {
                         className="external-link-icon"
                         target="_blank"
                         rel="noopener noreferrer"
-                        onClick={e => e.stopPropagation()}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleExternalLinkClick(projectExternalLinks[project.slug]);
+                        }}
                         aria-label={`Visit ${project.title} website`}
                       >
                         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -544,7 +584,7 @@ const HomePage = () => {
                 </p> */}
 
                 <p className="about-text">
-                  With a proven track record of delivering end-to-end UX solutions across healthcare, fintech, and enterprise SaaS, I bring 5 years of industry experience and a unique combination of UX design and QA expertise.
+                  With a proven track record of delivering end-to-end UX solutions across healthcare, fintech, and enterprise SaaS, I bring 4+ years of industry experience and a unique combination of UX design and QA expertise.
                 </p>
 
                 <p className="about-text">
