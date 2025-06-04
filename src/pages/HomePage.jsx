@@ -480,7 +480,7 @@ const HomePage = () => {
                 <div className="hero-status">
                   <p className="status-text">Actively seeking full-time opportunity | <span className="highlight">Immediate Joiner</span></p>
                   <div className="previous-companies">
-                    <p className="previous-text">Previously worked with</p>
+                    <p className="previous-text" style={{ fontWeight: 500 }}>Previously worked with</p>
                     <div className="company-logos">
                       <img src="/images/fdlogo.png" alt="Fluidesigns" className="company-logo" />
                       <img src="/images/cglogo.png" alt="Cognizant" className="company-logo" />
